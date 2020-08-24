@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.redirect("/");
+    res.redirect('/product');
 });
 
 app.use("/product", require("./routes/product"));

@@ -1,5 +1,9 @@
 const router = require("express").Router();
 
+router.get("/", (req, res) => {
+    res.send("/get");
+});
+
 router.get("/seach", (req, res) => {
     res.send("/findprod");
 });
