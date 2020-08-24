@@ -17,6 +17,7 @@ class Amazon extends Component {
         }
 
         this.updateurl = this.updateurl.bind(this);
+        this.getUrlServer = this.getUrlServer.bind(this);
     }
 
     componentDidMount() {
@@ -28,11 +29,11 @@ class Amazon extends Component {
     }
 
     addOrangeBorder() {
-        document.querySelector(".first-layer div").classList.add("orange-border");
+        document.querySelector(".first-layer form").classList.add("orange-border");
     }
 
     removeOrangeBorder() {
-        document.querySelector(".first-layer div").classList.remove("orange-border");
+        document.querySelector(".first-layer form").classList.remove("orange-border");
     }
 
     dropWelcomeDiv() {
@@ -46,10 +47,20 @@ class Amazon extends Component {
     }
 
     updateurl(e) {
+        e.preventDefault();
+
         this.setState({
             url: e.target.value
-        }, () => {
-            this.state.url === "" ? this.riseWelcomeDiv() : this.dropWelcomeDiv();
+        });
+    }
+
+    getUrlServer(e) {
+        e.preventDefault();
+
+        if (this.state.url === "") {
+            this.riseWelcomeDiv();
+        } else {
+            this.dropWelcomeDiv();
 
             // show loading spinner
             setTimeout(() => {
@@ -69,7 +80,7 @@ class Amazon extends Component {
                     document.querySelector(".preloader").style.display = "none";
                 }, 2000);
             })
-        });
+        }
     }
 
     render() {
@@ -77,10 +88,10 @@ class Amazon extends Component {
             <div className="body" >
                 <div className="first-layer">
                     <h1><span>Ama</span><span>'</span><span>Track</span></h1>
-                    <div onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
+                    <form onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
                         <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateurl} />
-                        <button type="submit" className="url-btn"><i class="fas fa-search"></i></button>
-                    </div>
+                        <button type="submit" className="url-btn" onClick={this.getUrlServer}><i className="fas fa-search"></i></button>
+                    </form>
                     <a href="https://github.com/keshavDooleea?tab=repositories"
                         target="_blank"><i className="fab fa-github"></i></a>
                 </div>
