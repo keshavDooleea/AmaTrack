@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from "axios";
 import preloader from "./assets/images/preloader.gif"
 import './Amazon.css';
 
@@ -10,7 +11,7 @@ class Amazon extends Component {
             url: ""
         }
 
-        this.updateURL = this.updateURL.bind(this);
+        this.updateurl = this.updateurl.bind(this);
     }
 
     componentDidMount() {
@@ -47,15 +48,21 @@ class Amazon extends Component {
         }, 800);
     }
 
-    updateURL(e) {
+    updateurl(e) {
         this.setState({
             url: e.target.value
         }, () => {
             this.state.url === "" ? this.riseWelcomeDiv() : this.dropWelcomeDiv();
+
+            // fetch from server
+            axios({
+                method: "POST",
+                url: "http://localhost:5000/product/search",
+                data: {
+                    url: this.state.url
+                }
+            })
         });
-
-        // fetch from server
-
     }
 
     render() {
@@ -64,7 +71,7 @@ class Amazon extends Component {
                 <div className="first-layer">
                     <h1><span>Ama</span><span>'</span><span>Track</span></h1>
                     <div onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
-                        <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateURL} />
+                        <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateurl} />
                     </div>
                     <a href="https://github.com/keshavDooleea?tab=repositories"
                         target="_blank"><i className="fab fa-github"></i></a>

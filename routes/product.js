@@ -4,7 +4,10 @@ router.get("/", (req, res) => {
     res.send("/get");
 });
 
-router.get("/seach", (req, res) => {
+router.post("/search", (req, res) => {
+    const url = req.body.url;
+
+    console.log(url);
     res.send("/findprod");
 });
 
