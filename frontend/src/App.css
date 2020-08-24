@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@font-face {
+  font-family: amazon;
+  src: url("../src/assets/fonts/amazon.ttf");
+}
+
+:root {
+  --transition: 0.3s;
+}
+
+.body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: amazon;
+  font-size: 16px;
+}
+
+.body .first-layer {
+  width: 100%;
+  height: 6vh;
+  background-color: #131921;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 30px;
+  color: #fff;
+}
+
+.body .first-layer h1 span:nth-child(2) {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.body .first-layer h1 span:nth-child(3), .body .first-layer i {
+  color: #f9e173;
+}
+
+.body .first-layer i {
+  cursor: pointer;
+  -webkit-transform: scale(1.8);
+          transform: scale(1.8);
+  -webkit-transition: color var(--transition), -webkit-transform var(--transition);
+  transition: color var(--transition), -webkit-transform var(--transition);
+  transition: color var(--transition), transform var(--transition);
+  transition: color var(--transition), transform var(--transition), -webkit-transform var(--transition);
+}
+
+.body .first-layer i:hover {
+  -webkit-transform: scale(2.2) rotate(720deg);
+          transform: scale(2.2) rotate(720deg);
+  color: #f9e173;
+}
+
+.body .sec-layer {
+  width: 100%;
+  height: 4vh;
+  background-color: #232f3e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.body .third-layer {
+  width: 100%;
+  height: 90vh;
+  background-color: #f9e173;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.body .third-layer .container {
+  width: 70%;
+  height: 70%;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  background-color: red;
+}
+/*# sourceMappingURL=App.css.map */

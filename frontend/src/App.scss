@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: amazon;
+    src: url("../src/assets/fonts/amazon.ttf");
+}
+
+:root {
+    --transition: 0.3s;
+}
+
+@mixin flexin($dir, $align, $justify) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    font-family: amazon;
+    font-size: 16px;
+
+    .first-layer {
+        width: 100%;
+        height: 6vh;
+        background-color: #131921;
+        @include flexin(row, center, space-between);
+        padding: 0 30px;
+        color: #fff;
+
+        h1 span:nth-child(2) {
+            color: rgba($color: #fff, $alpha: 0.5);
+        }
+
+        h1 span:nth-child(3), i {
+            color: #f9e173;
+        }
+
+        i {
+            cursor: pointer;
+            transform: scale(1.8);
+            transition: color var(--transition), transform var(--transition);
+
+            &:hover {
+                transform: scale(2.2) rotate(720deg);
+                color: #f9e173;
+            }
+        }
+    }
+
+    .sec-layer {
+        width: 100%;
+        height: 4vh;
+        background-color: #232f3e;
+        @include flexin(row, center, center);
+        color: rgba($color: #fff, $alpha: 0.5);
+    }
+
+    .third-layer {
+        width: 100%;
+        height: 90vh;
+        background-color: #f9e173;
+        @include flexin(row, center, center);
+
+        .container {
+            width: 70%;
+            height: 70%;
+            filter: blur(5px);
+            background-color: red;
+        }
+    }
+}
