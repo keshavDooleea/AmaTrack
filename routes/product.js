@@ -2,8 +2,11 @@ require("dotenv/config");
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
-let mailer = require("nodemailer");
 const mongo = require("mongoose");
+let mailer = require("nodemailer");
+
+// mongo schemas
+const Product = require("./modals/productSchema").Product;
 
 // Mongo connection
 mongo.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION,
@@ -20,6 +23,9 @@ router.get("/scrapeInfo", (req, res) => {
 
     // extract url data
     // post in db
+
+    // NOPE TO ABOVE
+    // scrape here
 
     res.json(url);
 });
