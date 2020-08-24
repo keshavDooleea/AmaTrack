@@ -13,6 +13,7 @@
   --transition: 0.3s;
   --animation: 1s;
   --radius: 5px;
+  --boxShadow: 0 0 10px rgba(0, 0, 0, 0.6);
   --linearGradient: linear-gradient(180deg, rgba(249,225,115,1) 60%, rgba(255,255,255,1) 100%);
 }
 
@@ -182,6 +183,12 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  opacity: 0;
+  -webkit-animation: rise 1.5s forwards 1.9s;
+          animation: rise 1.5s forwards 1.9s;
+  -webkit-box-shadow: var(--boxShadow);
+          box-shadow: var(--boxShadow);
+  z-index: 2;
 }
 
 .welcome-div i {
@@ -199,16 +206,13 @@
 }
 
 .drop {
-  opacity: 0;
+  -webkit-animation: drop 1.5s forwards;
+          animation: drop 1.5s forwards;
 }
 
 .rise {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  opacity: 1;
+  -webkit-animation: rise 1.5s forwards;
+          animation: rise 1.5s forwards;
 }
 
 @-webkit-keyframes slide-first-layer {

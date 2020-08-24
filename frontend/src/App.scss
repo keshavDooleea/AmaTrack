@@ -12,6 +12,7 @@
     --transition: 0.3s;
     --animation: 1s;
     --radius: 5px;
+    --boxShadow: 0 0 10px rgba(0, 0, 0, 0.6);
     --linearGradient: linear-gradient(180deg, rgba(249,225,115,1) 60%, rgba(255,255,255,1) 100%);
 }
 
@@ -129,6 +130,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: rise 1.5s forwards 1.9s;
+    box-shadow:  var(--boxShadow);
+    z-index: 2;
 
     i {
         animation: bounce 2s ease infinite;
@@ -146,17 +151,11 @@
 }
 
 .drop {
-    // animation: drop 1.5s forwards;
-    opacity: 0;
+    animation: drop 1.5s forwards;
 }
 
 .rise {
-    // animation: rise 1.5s forwards;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-opacity: 1;
+    animation: rise 1.5s forwards;
 }
 
 // ANIMATIONS 

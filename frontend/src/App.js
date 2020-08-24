@@ -38,15 +38,16 @@ class App extends Component {
     document.querySelector(".welcome-div").classList.add("rise");
   }
 
+
   updateURL(e) {
     this.setState({
       url: e.target.value
-    })
-
-    console.log(this.state.url)
+    }, () => {
+      this.state.url === "" ? this.riseWelcomeDiv() : this.dropWelcomeDiv();
+    });
 
     // fetch from server
-    this.dropWelcomeDiv();
+
   }
 
   render() {
@@ -65,8 +66,6 @@ class App extends Component {
         </div>
         <div className="third-layer">
           <div className="welcome-div"><i className="fas fa-arrow-circle-up"></i><p>Enter link above</p></div>
-
-          {/* {this.state.url === "" ? this.riseWelcomeDiv : this.dropWelcomeDiv} */}
         </div>
       </div>
     );
