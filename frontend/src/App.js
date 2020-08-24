@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import preloader from "./assets/images/preloader.gif"
 import './App.css';
 
 class App extends Component {
@@ -31,13 +32,20 @@ class App extends Component {
   dropWelcomeDiv() {
     document.querySelector(".welcome-div").classList.remove("rise");
     document.querySelector(".welcome-div").classList.add("drop");
+
+    setTimeout(() => {
+      document.querySelector(".preloader").style.display = "block";
+    }, 800);
   }
 
   riseWelcomeDiv() {
     document.querySelector(".welcome-div").classList.remove("drop");
     document.querySelector(".welcome-div").classList.add("rise");
-  }
 
+    setTimeout(() => {
+      document.querySelector(".preloader").style.display = "none";
+    }, 800);
+  }
 
   updateURL(e) {
     this.setState({
@@ -66,6 +74,7 @@ class App extends Component {
         </div>
         <div className="third-layer">
           <div className="welcome-div"><i className="fas fa-arrow-circle-up"></i><p>Enter link above</p></div>
+          <img className="preloader" src={preloader} alt="" />
         </div>
       </div>
     );
