@@ -1,8 +1,16 @@
+require("dotenv/config");
 const router = require("express").Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 let mailer = require("nodemailer");
+const mongo = require("mongoose");
 
+// Mongo connection
+mongo.connect(process.env.MONGODB_URI || process.env.DB_CONNECTION,
+    { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false },
+    () => console.log("connected to DB!"));
+
+// Routes
 router.get("/", (req, res) => {
     res.send("/get");
 });
