@@ -80,15 +80,34 @@
 }
 
 .body .first-layer div .url-input {
-  width: 100%;
+  width: 93%;
   height: 100%;
-  border-radius: var(--radius);
+  border-radius: var(--radius) 0 0 var(--radius);
   border: none;
   padding: 0 10px;
   outline: none;
 }
 
-.body .first-layer i {
+.body .first-layer div .url-btn {
+  width: 7%;
+  height: 100%;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #febd69;
+}
+
+.body .first-layer div .url-btn i {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+
+.body .first-layer div .url-btn:hover {
+  background-color: #f3a847;
+}
+
+.body .first-layer > i {
   cursor: pointer;
   -webkit-transform: scale(1.7);
           transform: scale(1.7);
@@ -99,7 +118,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.body .first-layer i:hover {
+.body .first-layer > i:hover {
   -webkit-transform: scale(2.2) rotate(720deg);
           transform: scale(2.2) rotate(720deg);
   color: #f9e173;
@@ -207,7 +226,11 @@
 }
 
 .orange-border .url-input {
-  border-radius: 3.5px !important;
+  border-radius: 3.5px 0 0 3.5px !important;
+}
+
+.orange-border .url-btn {
+  border-radius: 0 3.5px 3.5px 0 !important;
 }
 
 .drop {

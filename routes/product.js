@@ -1,11 +1,14 @@
 const router = require("express").Router();
+const axios = require("axios");
+const cheerio = require("cheerio");
+let mailer = require("nodemailer");
 
 router.get("/", (req, res) => {
     res.send("/get");
 });
 
-router.post("/search", (req, res) => {
-    const url = req.body.url;
+router.get("/search/:url", (req, res) => {
+    const url = req.params.url;
 
     console.log(url);
     res.json(url);

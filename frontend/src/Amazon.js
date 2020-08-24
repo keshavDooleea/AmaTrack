@@ -38,19 +38,11 @@ class Amazon extends Component {
     dropWelcomeDiv() {
         document.querySelector(".welcome-div").classList.remove("rise");
         document.querySelector(".welcome-div").classList.add("drop");
-
-        setTimeout(() => {
-            document.querySelector(".preloader").style.display = "block";
-        }, 800);
     }
 
     riseWelcomeDiv() {
         document.querySelector(".welcome-div").classList.remove("drop");
         document.querySelector(".welcome-div").classList.add("rise");
-
-        setTimeout(() => {
-            document.querySelector(".preloader").style.display = "none";
-        }, 800);
     }
 
     updateurl(e) {
@@ -59,16 +51,23 @@ class Amazon extends Component {
         }, () => {
             this.state.url === "" ? this.riseWelcomeDiv() : this.dropWelcomeDiv();
 
+            // show loading spinner
+            setTimeout(() => {
+                document.querySelector(".preloader").style.display = "block";
+            }, 800);
+
             // fetch from server
             axios({
-                method: "POST",
-                url: "/product/search",
-                data: {
-                    url: this.state.url
-                }
+                method: "GET",
+                url: `/product/search/${this.state.url}`,
             }).then(res => {
                 const { data } = res;
                 console.log(data)
+
+                // hide loading spinner
+                setTimeout(() => {
+                    document.querySelector(".preloader").style.display = "none";
+                }, 2000);
             })
         });
     }
@@ -80,6 +79,7 @@ class Amazon extends Component {
                     <h1><span>Ama</span><span>'</span><span>Track</span></h1>
                     <div onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
                         <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateurl} />
+                        <button type="submit" className="url-btn"><i class="fas fa-search"></i></button>
                     </div>
                     <a href="https://github.com/keshavDooleea?tab=repositories"
                         target="_blank"><i className="fab fa-github"></i></a>

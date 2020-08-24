@@ -67,17 +67,35 @@
             transform: translate(-50%, -50%);
 
             .url-input {
-                width: 100%;
+                width: 93%;
                 height: 100%;
-                border-radius: var(--radius);
+                border-radius: var(--radius) 0 0 var(--radius);
                 border: none;
                 padding: 0 10px;
                 outline: none;
             }
+
+            .url-btn {
+                width: 7%;
+                height: 100%;
+                border-radius: 0 var(--radius) var(--radius) 0;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background-color: #febd69;
+
+                i {
+                    transform: scale(1.4);
+                }
+
+                &:hover {
+                    background-color: #f3a847;
+                }
+            }
         }
 
 
-        i {
+        & > i {
             cursor: pointer;
             transform: scale(1.7);
             transition: color var(--transition), transform var(--transition);
@@ -151,7 +169,11 @@
     border: 2px solid orange;
 
     .url-input {
-        border-radius: 3.5px !important;
+        border-radius: 3.5px 0 0 3.5px !important;
+    }
+
+    .url-btn {
+        border-radius: 0 3.5px 3.5px 0 !important;
     }
 }
 
