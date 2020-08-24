@@ -95,7 +95,7 @@
         }
 
 
-        & > i {
+        a i {
             cursor: pointer;
             transform: scale(1.7);
             transition: color var(--transition), transform var(--transition);

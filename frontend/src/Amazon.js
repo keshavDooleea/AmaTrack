@@ -70,7 +70,10 @@ class Amazon extends Component {
             // fetch from server
             axios({
                 method: "GET",
-                url: `/product/search/${this.state.url}`,
+                url: "/product/scrapeInfo",
+                params: {
+                    url: this.state.url
+                }
             }).then(res => {
                 const { data } = res;
                 console.log(data)

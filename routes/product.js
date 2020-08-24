@@ -7,10 +7,12 @@ router.get("/", (req, res) => {
     res.send("/get");
 });
 
-router.get("/search/:url", (req, res) => {
-    const url = req.params.url;
+router.get("/scrapeInfo", (req, res) => {
+    const url = req.query.url;
 
-    console.log(url);
+    // extract url data
+    // post in db
+
     res.json(url);
 });
 

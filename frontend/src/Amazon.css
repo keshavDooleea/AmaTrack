@@ -107,7 +107,7 @@
   background-color: #f3a847;
 }
 
-.body .first-layer > i {
+.body .first-layer a i {
   cursor: pointer;
   -webkit-transform: scale(1.7);
           transform: scale(1.7);
@@ -118,7 +118,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.body .first-layer > i:hover {
+.body .first-layer a i:hover {
   -webkit-transform: scale(2.2) rotate(720deg);
           transform: scale(2.2) rotate(720deg);
   color: #f9e173;
