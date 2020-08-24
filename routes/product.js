@@ -1,6 +1,7 @@
 require("dotenv/config");
 const router = require("express").Router();
 const mongo = require("mongoose");
+const scrapeProduct = require("../scrape");
 let mailer = require("nodemailer");
 
 // mongo schemas
@@ -18,7 +19,7 @@ router.get("/", (req, res) => {
 
 router.get("/scrapeInfo", (req, res) => {
     const url = req.query.url;
-
+    scrapeProduct(url);
     // extract url data
     // post in db
 

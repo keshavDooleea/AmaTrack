@@ -96,7 +96,7 @@ class Amazon extends Component {
                         <button type="submit" className="url-btn" onClick={this.getUrlServer}><i className="fas fa-search"></i></button>
                     </form>
                     <a href="https://github.com/keshavDooleea?tab=repositories"
-                        target="_blank"><i className="fab fa-github"></i></a>
+                        target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
                 </div>
                 <div className="sec-layer">
                     <small>Get notified when your favorite item is less expensive or back in stock!</small>
