@@ -3,6 +3,11 @@ import axios from "axios";
 import preloader from "./assets/images/preloader.gif"
 import './Amazon.css';
 
+// default request configs
+axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['Accept'] = 'application/json';
+
 class Amazon extends Component {
     constructor(props) {
         super(props);
@@ -57,12 +62,13 @@ class Amazon extends Component {
             // fetch from server
             axios({
                 method: "POST",
-                url: "http://localhost:5000/product/search",
+                url: "/product/search",
                 data: {
                     url: this.state.url
                 }
             }).then(res => {
                 const { data } = res;
+                console.log(data)
             })
         });
     }
