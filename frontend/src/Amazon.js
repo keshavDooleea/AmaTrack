@@ -61,6 +61,8 @@ class Amazon extends Component {
                 data: {
                     url: this.state.url
                 }
+            }).then(res => {
+                const { data } = res;
             })
         });
     }

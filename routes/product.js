@@ -8,7 +8,7 @@ router.post("/search", (req, res) => {
     const url = req.body.url;
 
     console.log(url);
-    res.send("/findprod");
+    res.json(url);
 });
 
 router.get("/notify", (req, res) => {
