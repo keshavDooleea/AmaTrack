@@ -17,16 +17,10 @@ router.get("/", (req, res) => {
     res.send("/get");
 });
 
-router.get("/scrapeInfo", (req, res) => {
+router.get("/scrapeInfo", async (req, res) => {
     const url = req.query.url;
-    scrapeProduct(url);
-    // extract url data
-    // post in db
-
-    // NOPE TO ABOVE
-    // scrape here
-
-    res.json(url);
+    const item = await scrapeProduct(url);
+    res.json(item);
 });
 
 router.get("/notify", (req, res) => {
