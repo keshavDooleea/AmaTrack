@@ -79,9 +79,7 @@ class Amazon extends Component {
                 console.log(data)
 
                 // hide loading spinner
-                setTimeout(() => {
-                    document.querySelector(".preloader").style.display = "none";
-                }, 2000);
+                document.querySelector(".preloader").style.display = "none";
             })
         }
     }
