@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { get } = require("mongoose");
+const puppeteer = require('puppeteer');
 
 // extracts number from text/string
 function getNumber(string) {
@@ -14,6 +14,15 @@ async function find(url) {
         const { data } = await axios.get(url);
         const $ = cheerio.load(data); // loads html
         let stockNb, price;
+        let title = "test.png"
+
+        // take screenshot
+        const imgPath = `images/${title}`;
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.goto(url);
+        await page.screenshot({ path: imgPath });
+        await browser.close();
 
         // get stock amount
         const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
@@ -30,6 +39,7 @@ async function find(url) {
         return {
             stockNb,
             price,
+            imgPath
         }
     } catch (error) {
         console.log(`scrape.js: ${error}`);
