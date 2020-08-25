@@ -88,9 +88,7 @@ class Amazon extends Component {
             this.dropWelcomeDiv();
 
             // show loading spinner
-            setTimeout(() => {
-                document.querySelector(".preloader").style.display = "block";
-            }, 800);
+            document.querySelector(".preloader").style.display = "block";
 
             // fetch from server
             axios({
