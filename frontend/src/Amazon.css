@@ -48,7 +48,7 @@
   color: #fff;
   -webkit-animation: slide-first-layer var(--animation) ease-in-out forwards;
           animation: slide-first-layer var(--animation) ease-in-out forwards;
-  z-index: 2;
+  z-index: 3;
   position: relative;
 }
 
@@ -147,6 +147,7 @@
   -webkit-animation: slide-sec-layer var(--animation) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1.4s;
           animation: slide-sec-layer var(--animation) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1.4s;
   position: relative;
+  z-index: 2;
 }
 
 .body .sec-layer::before {
@@ -179,8 +180,8 @@
 }
 
 .welcome-div {
-  width: 18%;
-  height: 12vh;
+  width: 20%;
+  height: 14vh;
   color: #fff;
   background-color: #232f3e;
   border-radius: var(--radius);
@@ -231,6 +232,11 @@
 
 .orange-border .url-btn {
   border-radius: 0 3.5px 3.5px 0 !important;
+}
+
+.error-validation {
+  color: #f8d7da;
+  background-color: #d2322d;
 }
 
 .drop {

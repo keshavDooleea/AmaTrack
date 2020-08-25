@@ -59,6 +59,11 @@ class Amazon extends Component {
 
         if (this.state.url === "") {
             this.riseWelcomeDiv();
+        } else if (!this.state.url.startsWith("https://www.amazon.ca/") && !this.state.url.startsWith("www.amazon.ca/") && !this.state.url.startsWith("amazon.ca/")) {
+            this.riseWelcomeDiv();
+            document.querySelector(".welcome-div p").textContent = "Enter a valid Amazon URL";
+            document.querySelector(".welcome-div").classList.add("error-validation");
+            return;
         } else {
             this.dropWelcomeDiv();
 
