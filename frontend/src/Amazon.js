@@ -15,6 +15,7 @@ class Amazon extends Component {
         this.state = {
             url: "",
             data: {},
+            storage: "imageKeys",
             isScraped: false,
         }
 
@@ -24,10 +25,49 @@ class Amazon extends Component {
 
     componentDidMount() {
         // this.focusFormListener();
+        this.checkSession();
     }
 
-    prevent(e) {
-        e.preventDefault();
+    setCookie(c_name, value, exdays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value =
+            escape(value) +
+            (exdays === null ? "" : "; expires=" + exdate.toUTCString());
+        document.cookie = c_name + "=" + c_value;
+    }
+
+    getCookie(c_name) {
+        var c_value = document.cookie;
+        var c_start = c_value.indexOf(" " + c_name + "=");
+        if (c_start === -1) {
+            c_start = c_value.indexOf(c_name + "=");
+        }
+        if (c_start === -1) {
+            c_value = null;
+        } else {
+            c_start = c_value.indexOf("=", c_start) + 1;
+            var c_end = c_value.indexOf(";", c_start);
+            if (c_end === -1) {
+                c_end = c_value.length;
+            }
+            c_value = unescape(c_value.substring(c_start, c_end));
+        }
+        return c_value;
+    }
+
+    // check if user is visiting for the first time or not
+    checkSession() {
+        var c = this.getCookie("isFirstTimeAmazon");
+        if (c === "no") {
+            // welcome back
+            console.log("welcome back");
+        } else {
+            // first time
+            console.log("first time")
+            localStorage.setItem(this.state.storage, "");
+        }
+        this.setCookie("isFirstTimeAmazon", "no", null);
     }
 
     addOrangeBorder() {
@@ -105,6 +145,10 @@ class Amazon extends Component {
                     data: data,
                     isScraped: true
                 });
+
+                // save keys to localstorage
+                const savedKeys = localStorage.getItem(this.state.storage);
+                localStorage.setItem(this.state.storage, savedKeys + JSON.stringify(data.key));
 
                 // hide loading spinner
                 document.querySelector(".preloader").style.display = "none";
