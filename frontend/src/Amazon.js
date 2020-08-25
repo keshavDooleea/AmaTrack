@@ -13,7 +13,9 @@ class Amazon extends Component {
         super(props);
 
         this.state = {
-            url: ""
+            url: "",
+            data: {},
+            isScraped: false,
         }
 
         this.updateurl = this.updateurl.bind(this);
@@ -54,8 +56,26 @@ class Amazon extends Component {
         });
     }
 
+    showProductInfo() {
+
+        console.log("DWDWDW");
+
+        return (
+            <div className="third-layer">
+                <div className="img-container">
+                    <img src="" alt="" />
+                </div>
+                <div className="info-container"></div>
+            </div>
+        );
+    }
+
     getUrlServer(e) {
         e.preventDefault();
+
+        this.setState({
+            isScraped: false
+        });
 
         if (this.state.url === "") {
             this.riseWelcomeDiv();
@@ -83,6 +103,11 @@ class Amazon extends Component {
                 const { data } = res;
                 console.log(data)
 
+                this.setState({
+                    data: data,
+                    isScraped: true
+                });
+
                 // hide loading spinner
                 document.querySelector(".preloader").style.display = "none";
             })
@@ -107,6 +132,7 @@ class Amazon extends Component {
                 <div className="third-layer">
                     <div className="welcome-div"><i className="fas fa-arrow-circle-up"></i><p>Enter link above</p></div>
                     <img className="preloader" src={preloader} alt="" />
+                    {this.state.isScraped ? this.showProductInfo() : null}
                 </div>
             </div>
         );

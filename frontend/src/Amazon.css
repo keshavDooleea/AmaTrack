@@ -173,10 +173,18 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   position: relative;
+}
+
+.body .third-layer .img-container,
+.body .third-layer .info-container {
+  width: 40%;
+  height: 80%;
+  background-color: white;
+  border-radius: var(--radius);
 }
 
 .welcome-div {
@@ -219,6 +227,11 @@
 .preloader {
   display: none;
   width: 90px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .orange-border {
