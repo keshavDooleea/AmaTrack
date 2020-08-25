@@ -110,12 +110,31 @@ class Amazon extends Component {
         );
     }
 
+    isEmpty(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     getUrlServer(e) {
         e.preventDefault();
 
         this.setState({
             isScraped: false
         });
+
+        // delete existing images
+        if (!this.isEmpty(this.state.data)) {
+            axios({
+                method: "DELETE",
+                url: "/product/deleteImg",
+                params: {
+                    key: this.state.data.key
+                }
+            });
+        }
 
         if (this.state.url === "") {
             this.riseWelcomeDiv();
