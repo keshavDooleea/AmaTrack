@@ -7,17 +7,27 @@ function getNumber(string) {
     return string.match(/\d+(?:\.\d+)?/g).join("");
 }
 
+// generate random key
+function randomKey(length) {
+    return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
 // get page source contents
 async function find(url) {
     // make http request to get source content
     try {
         const { data } = await axios.get(url);
         const $ = cheerio.load(data); // loads html
-        let stockNb, price;
-        let title = "test.png"
+        let stockNb, price, title, key;
+
+        // get title
+        title = $("#productTitle.a-size-large.product-title-word-break").text();
+
+        // key
+        key = randomKey(8);
 
         // take screenshot
-        const imgPath = `images/${title}`;
+        const imgPath = `images/${key}.png`;
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.goto(url);
@@ -39,6 +49,7 @@ async function find(url) {
         return {
             stockNb,
             price,
+            title,
             imgPath
         }
     } catch (error) {
