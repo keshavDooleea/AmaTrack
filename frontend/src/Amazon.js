@@ -57,16 +57,16 @@ class Amazon extends Component {
     }
 
     showProductInfo() {
-
-        console.log("DWDWDW");
+        const data = this.state.data;
+        const imgPath = `/screenshots/${data.key}.png`;
 
         return (
             <div className="third-layer">
                 <div className="img-container">
-                    <img src="" alt="" />
+                    <img src={imgPath} alt="" />
                 </div>
                 <div className="info-container"></div>
-            </div>
+            </div >
         );
     }
 

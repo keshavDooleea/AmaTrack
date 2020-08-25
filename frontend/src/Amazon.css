@@ -181,9 +181,14 @@
 
 .body .third-layer .img-container,
 .body .third-layer .info-container {
-  width: 40%;
-  height: 80%;
+  width: 45%;
+  height: 90%;
   background-color: white;
+  border-radius: var(--radius);
+}
+
+.body .third-layer .img-container img {
+  width: 100%;
   border-radius: var(--radius);
 }
 

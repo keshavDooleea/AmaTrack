@@ -27,7 +27,7 @@ async function find(url) {
         key = randomKey(8);
 
         // take screenshot
-        const imgPath = `images/${key}.png`;
+        const imgPath = `./frontend/public/screenshots/${key}.png`;
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.goto(url);
@@ -50,7 +50,7 @@ async function find(url) {
             stockNb,
             price,
             title,
-            imgPath
+            key
         }
     } catch (error) {
         console.log(`scrape.js: ${error}`);
