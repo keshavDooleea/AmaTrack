@@ -153,32 +153,16 @@
             box-shadow:  var(--boxShadow);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
+            transition: var(--transition);
             
             img {
                 width: 100%;
                 border-radius: var(--radius);
-                overflow: hidden;
             }
 
-            &::after {
-                content: "Click image to visit product on Amazon";
-                width: 70%;
-                height: 3vh;
-                position: absolute;
-                top: -3vh;
-                left: 50%;
-                transform-origin: bottom;
-                transform: translateX(-50%) scaleY(0);
-                background-color: #f3f3f3;
-                text-align: center;
-                border-radius: var(--radius) var(--radius) 0 0;
-                box-shadow: var(--boxShadow);
-                font-size: 0.9rem;
-                transition: var(--transition);
-            }
-
-            &:hover::after {
-                transform: translateX(-50%) scaleY(1);
+            &:hover {
+                transform: scale(1.06);
             }
         }
 

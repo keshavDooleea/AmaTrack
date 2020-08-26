@@ -197,38 +197,19 @@
           box-shadow: var(--boxShadow);
   cursor: pointer;
   position: relative;
+  overflow: hidden;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
 }
 
 .body .third-layer .img-container img {
   width: 100%;
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
-.body .third-layer .img-container::after {
-  content: "Click image to visit product on Amazon";
-  width: 70%;
-  height: 3vh;
-  position: absolute;
-  top: -3vh;
-  left: 50%;
-  -webkit-transform-origin: bottom;
-          transform-origin: bottom;
-  -webkit-transform: translateX(-50%) scaleY(0);
-          transform: translateX(-50%) scaleY(0);
-  background-color: #f3f3f3;
-  text-align: center;
-  border-radius: var(--radius) var(--radius) 0 0;
-  -webkit-box-shadow: var(--boxShadow);
-          box-shadow: var(--boxShadow);
-  font-size: 0.9rem;
-  -webkit-transition: var(--transition);
-  transition: var(--transition);
-}
-
-.body .third-layer .img-container:hover::after {
-  -webkit-transform: translateX(-50%) scaleY(1);
-          transform: translateX(-50%) scaleY(1);
+.body .third-layer .img-container:hover {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
 }
 
 .body .third-layer .info-container {
