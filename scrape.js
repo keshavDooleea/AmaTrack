@@ -27,7 +27,6 @@ async function find(url) {
         key = randomKey(8);
 
         // take screenshot
-        const imgPath = `./frontend/public/screenshots/${key}.png`;
         const browser = await puppeteer.launch({ defaultViewport: null });
         const page = await browser.newPage();
         await page.setViewport({
@@ -36,7 +35,7 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url);
-        await page.screenshot({ path: imgPath });
+        const base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
         // get stock amount
@@ -55,7 +54,8 @@ async function find(url) {
             stockNb,
             price,
             title,
-            key
+            key,
+            base64img
         }
     } catch (error) {
         console.log(`scrape.js: ${error}`);

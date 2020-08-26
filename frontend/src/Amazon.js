@@ -65,7 +65,7 @@ class Amazon extends Component {
         } else {
             // first time
             console.log("first time")
-            localStorage.setItem(this.state.storage, "");
+            // localStorage.setItem(this.state.storage, "");
         }
         this.setCookie("isFirstTimeAmazon", "no", null);
     }
@@ -98,12 +98,11 @@ class Amazon extends Component {
 
     showProductInfo() {
         const data = this.state.data;
-        const imgPath = `/screenshots/${data.key}.png`;
 
         return (
             <div className="third-layer">
                 <a className="img-container" href={this.state.url} target="_blank" rel="noopener noreferrer">
-                    <img src={imgPath} alt="" />
+                    <img src={`data:image/jpeg;base64,${data.base64img}`} alt="" />
                 </a>
                 <div className="info-container">
                     <div className="actual-info">
@@ -121,35 +120,25 @@ class Amazon extends Component {
         );
     }
 
-    isEmpty(obj) {
-        for (var key in obj) {
-            if (obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    }
-
     getUrlServer(e) {
         e.preventDefault();
-
-        const storage = localStorage.getItem(this.state.storage);
 
         this.setState({
             isScraped: false
         });
 
         // delete existing images.. only 1 image always is left
-        if (storage !== null) {
-            axios({
-                method: "DELETE",
-                url: "/product/deleteImg",
-                params: {
-                    key: storage
-                }
-            }).then(() => {
-                localStorage.setItem(this.state.storage, "");
-            })
-        }
+        // if (storage !== null) {
+        //     axios({
+        //         method: "DELETE",
+        //         url: "/product/deleteImg",
+        //         params: {
+        //             key: storage
+        //         }
+        //     }).then(() => {
+        //         localStorage.setItem(this.state.storage, "");
+        //     })
+        // }
 
         if (this.state.url === "") {
             this.riseWelcomeDiv();
@@ -181,9 +170,9 @@ class Amazon extends Component {
                 });
 
                 // save keys to localstorage
-                const savedKeys = localStorage.getItem(this.state.storage);
-                savedKeys !== null ? localStorage.setItem(this.state.storage, savedKeys + JSON.stringify(data.key)) :
-                    localStorage.setItem(this.state.storage, JSON.stringify(data.key));
+                // const savedKeys = localStorage.getItem(this.state.storage);
+                // savedKeys !== null ? localStorage.setItem(this.state.storage, savedKeys + JSON.stringify(data.key)) :
+                //     localStorage.setItem(this.state.storage, JSON.stringify(data.key));
 
                 // hide loading spinner
                 document.querySelector(".preloader").style.display = "none";
