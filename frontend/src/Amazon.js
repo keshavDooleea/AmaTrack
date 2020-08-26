@@ -173,7 +173,7 @@ class Amazon extends Component {
                 }
             }).then(res => {
                 const { data } = res;
-                console.log(data)
+                console.log(data);
 
                 this.setState({
                     data: data,

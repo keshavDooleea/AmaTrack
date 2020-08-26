@@ -28,7 +28,7 @@ async function find(url) {
 
         // take screenshot
         const imgPath = `./frontend/public/screenshots/${key}.png`;
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ defaultViewport: null });
         const page = await browser.newPage();
         await page.setViewport({
             width: 980,
@@ -37,7 +37,7 @@ async function find(url) {
         });
         await page.goto(url);
         await page.screenshot({ path: imgPath });
-        // await browser.close();
+        await browser.close();
 
         // get stock amount
         const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
