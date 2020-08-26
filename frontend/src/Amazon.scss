@@ -44,17 +44,25 @@
         z-index: 3;
         position: relative;
 
-        h1 {
-            font-size: 27px;
+        .amazon {
+            text-decoration: none;
 
-            span:nth-child(2) {
-                color: rgba($color: #fff, $alpha: 0.5);
-            }
+            h1 {
+                font-size: 27px;
+    
+                span:nth-child(1) {
+                    color: rgba($color: #fff, $alpha: 1);
+                }
 
-            span:nth-child(3), i {
-                background: var(--linearGradient);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                span:nth-child(2) {
+                    color: rgba($color: #fff, $alpha: 0.5);
+                }
+    
+                span:nth-child(3), i {
+                    background: var(--linearGradient);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
             }
         }
 
@@ -96,7 +104,7 @@
         }
 
 
-        a i {
+        .github i {
             cursor: pointer;
             transform: scale(1.7);
             transition: color var(--transition), transform var(--transition);
@@ -143,10 +151,33 @@
             background-color: white;
             border-radius: var(--radius);
             box-shadow:  var(--boxShadow);
+            cursor: pointer;
+            position: relative;
 
             img {
                 width: 100%;
                 border-radius: var(--radius);
+            }
+
+            &::after {
+                content: "Click image to visit product on Amazon";
+                width: 70%;
+                height: 3vh;
+                position: absolute;
+                top: -3vh;
+                left: 50%;
+                transform-origin: bottom;
+                transform: translateX(-50%) scaleY(0);
+                background-color: #f3f3f3;
+                text-align: center;
+                border-radius: var(--radius) var(--radius) 0 0;
+                box-shadow: var(--boxShadow);
+                font-size: 0.9rem;
+                transition: var(--transition);
+            }
+
+            &:hover::after {
+                transform: translateX(-50%) scaleY(1);
             }
         }
 
@@ -176,6 +207,7 @@
                         h4 {
                             font-style: 16px;
                             text-align: center;
+                            color: #0f1111;
                         }
                     }
 

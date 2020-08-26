@@ -102,9 +102,9 @@ class Amazon extends Component {
 
         return (
             <div className="third-layer">
-                <div className="img-container">
+                <a className="img-container" href={this.state.url} target="_blank" rel="noopener noreferrer">
                     <img src={imgPath} alt="" />
-                </div>
+                </a>
                 <div className="info-container">
                     <div className="actual-info">
                         <div>
@@ -195,12 +195,14 @@ class Amazon extends Component {
         return (
             <div className="body" >
                 <div className="first-layer">
-                    <h1><span>Ama</span><span>'</span><span>Track</span></h1>
+                    <a className="amazon" href="https://www.amazon.ca/" target="_blank" rel="noopener noreferrer">
+                        <h1><span>Ama</span><span>'</span><span>Track</span></h1>
+                    </a>
                     <form onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
                         <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateurl} />
                         <button type="submit" className="url-btn" onClick={this.getUrlServer}><i className="fas fa-search"></i></button>
                     </form>
-                    <a href="https://github.com/keshavDooleea?tab=repositories"
+                    <a className="github" href="https://github.com/keshavDooleea?tab=repositories"
                         target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
                 </div>
                 <div className="sec-layer">

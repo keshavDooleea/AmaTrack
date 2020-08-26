@@ -53,15 +53,23 @@
   position: relative;
 }
 
-.body .first-layer h1 {
+.body .first-layer .amazon {
+  text-decoration: none;
+}
+
+.body .first-layer .amazon h1 {
   font-size: 27px;
 }
 
-.body .first-layer h1 span:nth-child(2) {
+.body .first-layer .amazon h1 span:nth-child(1) {
+  color: white;
+}
+
+.body .first-layer .amazon h1 span:nth-child(2) {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.body .first-layer h1 span:nth-child(3), .body .first-layer h1 i {
+.body .first-layer .amazon h1 span:nth-child(3), .body .first-layer .amazon h1 i {
   background: var(--linearGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -108,7 +116,7 @@
   background-color: #f3a847;
 }
 
-.body .first-layer a i {
+.body .first-layer .github i {
   cursor: pointer;
   -webkit-transform: scale(1.7);
           transform: scale(1.7);
@@ -119,7 +127,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.body .first-layer a i:hover {
+.body .first-layer .github i:hover {
   -webkit-transform: scale(2.2) rotate(720deg);
           transform: scale(2.2) rotate(720deg);
   color: #f9e173;
@@ -187,11 +195,39 @@
   border-radius: var(--radius);
   -webkit-box-shadow: var(--boxShadow);
           box-shadow: var(--boxShadow);
+  cursor: pointer;
+  position: relative;
 }
 
 .body .third-layer .img-container img {
   width: 100%;
   border-radius: var(--radius);
+}
+
+.body .third-layer .img-container::after {
+  content: "Click image to visit product on Amazon";
+  width: 70%;
+  height: 3vh;
+  position: absolute;
+  top: -3vh;
+  left: 50%;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transform: translateX(-50%) scaleY(0);
+          transform: translateX(-50%) scaleY(0);
+  background-color: #f3f3f3;
+  text-align: center;
+  border-radius: var(--radius) var(--radius) 0 0;
+  -webkit-box-shadow: var(--boxShadow);
+          box-shadow: var(--boxShadow);
+  font-size: 0.9rem;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.body .third-layer .img-container:hover::after {
+  -webkit-transform: translateX(-50%) scaleY(1);
+          transform: translateX(-50%) scaleY(1);
 }
 
 .body .third-layer .info-container {
@@ -237,6 +273,7 @@
 .body .third-layer .info-container .actual-info div:nth-child(1) h4 {
   font-style: 16px;
   text-align: center;
+  color: #0f1111;
 }
 
 .body .third-layer .info-container .actual-info div:nth-child(2) {
