@@ -153,6 +153,7 @@
             box-shadow:  var(--boxShadow);
             cursor: pointer;
             position: relative;
+            overflow: hidden;
 
             img {
                 width: 100%;
