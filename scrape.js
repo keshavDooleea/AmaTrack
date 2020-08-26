@@ -37,10 +37,7 @@ async function find(url) {
         });
         await page.goto(url);
         await page.screenshot({ path: imgPath });
-
-        setTimeout(async () => {
-            await browser.close();
-        }, 2000);
+        // await browser.close();
 
         // get stock amount
         const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
