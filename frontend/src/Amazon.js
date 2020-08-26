@@ -106,7 +106,15 @@ class Amazon extends Component {
                     <img src={imgPath} alt="" />
                 </div>
                 <div className="info-container">
-                    <div className="actual-info"></div>
+                    <div className="actual-info">
+                        <div>
+                            <h4>{this.state.data.title}</h4>
+                        </div>
+                        <div>
+                            <p>Current price: <span>$ {this.state.data.price}</span></p>
+                            <p>In stock? <span>{this.state.data.stockNb}</span></p>
+                        </div>
+                    </div>
                     <div className="desired-info"></div>
                 </div>
             </div >

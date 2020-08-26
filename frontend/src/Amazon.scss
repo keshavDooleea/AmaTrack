@@ -9,6 +9,7 @@
 }
 
 :root {
+    --productColor: #B12704;
     --transition: 0.3s;
     --animation: 1s;
     --radius: 5px;
@@ -164,6 +165,29 @@
 
             .actual-info {
                 height: 30%;
+
+                div {
+                    width: 100%;
+                    padding: 5px 15px;
+                    
+                    &:nth-child(1) {
+                        height: 60%;
+
+                        h4 {
+                            font-style: 16px;
+                            text-align: center;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        height: 40%;
+                        @include flexin(row, center, space-between);
+
+                        span {
+                            color: var(--productColor);
+                        }
+                    }
+                }
             }
 
             .desired-info {

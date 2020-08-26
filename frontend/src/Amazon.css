@@ -10,6 +10,7 @@
 }
 
 :root {
+  --productColor: #B12704;
   --transition: 0.3s;
   --animation: 1s;
   --radius: 5px;
@@ -222,6 +223,41 @@
 
 .body .third-layer .info-container .actual-info {
   height: 30%;
+}
+
+.body .third-layer .info-container .actual-info div {
+  width: 100%;
+  padding: 5px 15px;
+}
+
+.body .third-layer .info-container .actual-info div:nth-child(1) {
+  height: 60%;
+}
+
+.body .third-layer .info-container .actual-info div:nth-child(1) h4 {
+  font-style: 16px;
+  text-align: center;
+}
+
+.body .third-layer .info-container .actual-info div:nth-child(2) {
+  height: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.body .third-layer .info-container .actual-info div:nth-child(2) span {
+  color: var(--productColor);
 }
 
 .body .third-layer .info-container .desired-info {
