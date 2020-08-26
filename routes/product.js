@@ -39,7 +39,7 @@ router.delete("/deleteImg", (req, res) => {
                 // remove file
                 path = `./frontend/public/screenshots/${key}.png`;
                 fs.unlinkSync(path);
-                console.log(`deleted image: ${path}.png`);
+                console.log(`deleted image: ${path}`);
             }
         });
 

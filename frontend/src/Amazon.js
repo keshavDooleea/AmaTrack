@@ -197,7 +197,7 @@ class Amazon extends Component {
             <div className="body" >
                 <div className="first-layer">
                     <a className="amazon" href="https://www.amazon.ca/" target="_blank" rel="noopener noreferrer">
-                        <h1><span>Ama</span><span>'</span><span>Track</span></h1>
+                        <h1><span>Ama</span><span>'</span><span>Track</span><span>ca</span></h1>
                     </a>
                     <form onFocus={this.addOrangeBorder} onBlur={this.removeOrangeBorder}>
                         <input type="text" className="url-input" spellCheck="false" placeholder="Enter amazon's product link here" value={this.state.url} onChange={this.updateurl} />
