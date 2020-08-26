@@ -107,18 +107,21 @@ class Amazon extends Component {
                 <div className="info-container">
                     <div className="actual-info">
                         <div>
-                            <h4>{this.state.data.title}</h4>
+                            <h4>{data.title}</h4>
                         </div>
                         <div>
-                            <p>Current price: <span>$ {this.state.data.price}</span></p>
-                            <p>In stock? <span>{this.state.data.stockNb}</span></p>
+                            <p>Total price: <span>$ {data.totalPrice}</span> (inc $ <span>{data.shipping}</span> shipping)</p>
+                            <p>In stock? <span>{data.stockNb}</span></p>
                         </div>
                     </div>
                     <div className="desired-info">
                         <div className="desired-header">
                             <h4>Notify me when...</h4>
                         </div>
-                        <div className="desired-body"></div>
+                        <div className="desired-body">
+                            <label>Price is less than:</label>
+                            <input type="number" id="price" name="price" />
+                        </div>
                     </div>
                 </div>
             </div >

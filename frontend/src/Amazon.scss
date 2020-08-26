@@ -194,7 +194,7 @@
                     padding: 5px 15px;
                     
                     &:nth-child(1) {
-                        height: 60%;
+                        height: 55%;
 
                         h4 {
                             font-style: 16px;
@@ -204,8 +204,8 @@
                     }
 
                     &:nth-child(2) {
-                        height: 40%;
-                        @include flexin(row, center, space-between);
+                        height: 45%;
+                        @include flexin(column, flex-start, space-evenly);
 
                         span {
                             color: var(--productColor);

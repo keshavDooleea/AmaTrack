@@ -18,7 +18,7 @@ async function find(url) {
     try {
         const { data } = await axios.get(url);
         const $ = cheerio.load(data); // loads html
-        let stockNb, price, title, key;
+        let stockNb, price, title, shipping, key;
 
         // get title
         title = $("#productTitle.a-size-large.product-title-word-break").text();
@@ -50,10 +50,21 @@ async function find(url) {
             tag !== "" ? price = getNumber(tag) : null;
         });
 
+        // getting shipping costs
+        const shippingHtmlTags = [$("#ourprice_shippingmessage .a-color-secondary.a-size-base").text()];
+        shippingHtmlTags.forEach(tag => {
+            tag !== "" ? shipping = getNumber(tag) : shipping = 0;
+        });
+
+        // total price of item 
+        const totalPrice = parseInt(price) + shipping;
+
         return {
             stockNb,
             price,
             title,
+            shipping,
+            totalPrice,
             key,
             base64img
         }
