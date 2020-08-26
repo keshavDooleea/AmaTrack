@@ -105,7 +105,10 @@ class Amazon extends Component {
                 <div className="img-container">
                     <img src={imgPath} alt="" />
                 </div>
-                <div className="info-container"></div>
+                <div className="info-container">
+                    <div className="actual-info"></div>
+                    <div className="desired-info"></div>
+                </div>
             </div >
         );
     }

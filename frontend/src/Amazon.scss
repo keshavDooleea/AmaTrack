@@ -136,17 +136,39 @@
         @include flexin(row, center, space-evenly);
         position: relative;
 
-        .img-container,
-        .info-container {
+        .img-container {
             width: 45%;
             height: 90%;
             background-color: white;
             border-radius: var(--radius);
+            box-shadow:  var(--boxShadow);
+
+            img {
+                width: 100%;
+                border-radius: var(--radius);
+            }
         }
 
-        .img-container img {
-            width: 100%;
-            border-radius: var(--radius);
+        .info-container {
+            width: 45%;
+            height: 90%;
+            @include flexin(column, center, space-between);
+
+            .actual-info,
+            .desired-info {
+                width: 100%;
+                background-color: white;
+                border-radius: var(--radius);
+                box-shadow:  var(--boxShadow);
+            }
+
+            .actual-info {
+                height: 30%;
+            }
+
+            .desired-info {
+                height: 60%;
+            }
         }
     }
 }

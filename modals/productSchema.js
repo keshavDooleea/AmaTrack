@@ -9,6 +9,9 @@ const productSchema = new mongo.Schema({
         type: Number,
         required: true,
     },
+    actualPrice: {
+        type: Number,
+    },
     desiredPrice: {
         type: Number,
     },
