@@ -121,19 +121,23 @@ class Amazon extends Component {
     getUrlServer(e) {
         e.preventDefault();
 
+        const storage = localStorage.getItem(this.state.storage);
+
         this.setState({
             isScraped: false
         });
 
-        // delete existing images
-        if (!this.isEmpty(this.state.data)) {
+        // delete existing images.. only 1 image always is left
+        if (storage !== null) {
             axios({
                 method: "DELETE",
                 url: "/product/deleteImg",
                 params: {
-                    key: this.state.data.key
+                    key: storage
                 }
-            });
+            }).then(() => {
+                localStorage.setItem(this.state.storage, "");
+            })
         }
 
         if (this.state.url === "") {
@@ -167,7 +171,8 @@ class Amazon extends Component {
 
                 // save keys to localstorage
                 const savedKeys = localStorage.getItem(this.state.storage);
-                localStorage.setItem(this.state.storage, savedKeys + JSON.stringify(data.key));
+                savedKeys !== null ? localStorage.setItem(this.state.storage, savedKeys + JSON.stringify(data.key)) :
+                    localStorage.setItem(this.state.storage, JSON.stringify(data.key));
 
                 // hide loading spinner
                 document.querySelector(".preloader").style.display = "none";
