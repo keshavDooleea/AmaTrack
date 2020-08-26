@@ -197,12 +197,12 @@
           box-shadow: var(--boxShadow);
   cursor: pointer;
   position: relative;
-  overflow: hidden;
 }
 
 .body .third-layer .img-container img {
   width: 100%;
   border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .body .third-layer .img-container::after {

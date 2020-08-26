@@ -187,6 +187,7 @@ class Amazon extends Component {
 
                 // hide loading spinner
                 document.querySelector(".preloader").style.display = "none";
+                document.querySelector(".url-input").value = "";
             })
         }
     }
