@@ -96,6 +96,18 @@ class Amazon extends Component {
         });
     }
 
+    notifyMe() {
+        const inputPrice = document.querySelector(".input-price").value;
+        const warningText = document.querySelector(".warning-text");
+        const data = this.state.data;
+
+        if (inputPrice === "") {
+            warningText.textContent = "Enter an amount";
+        } else if (inputPrice >= data.totalPrice) {
+            warningText.textContent = "Enter a lower amount";
+        }
+    }
+
     showProductInfo() {
         const data = this.state.data;
 
@@ -121,16 +133,16 @@ class Amazon extends Component {
                         <div className="desired-body">
                             <div>
                                 <p>Total price is less than</p>
-                                <input type="number" id="price" name="price" />
-                                <p></p>
+                                <input type="number" class="input-price" />
+                                <small className="warning-text"></small>
                             </div>
                             <div>
                                 <p>Item is back in stock</p>
-                                <input type="checkbox" disabled="true" className="disabled" />
+                                <input type="checkbox" disabled="true" className="disabled input-stock" />
                             </div>
                         </div>
                         <div className="desired-action">
-                            <button>Notify me</button>
+                            <button onClick={() => this.notifyMe()}>Notify me</button>
                         </div>
                     </div>
                 </div>

@@ -385,6 +385,11 @@
   outline-color: orange;
 }
 
+.body .third-layer .info-container .desired-info .desired-body .warning-text {
+  margin-top: 10px;
+  color: #ea2424;
+}
+
 .body .third-layer .info-container .desired-info .desired-action {
   width: 100%;
   height: 25%;
