@@ -119,8 +119,18 @@ class Amazon extends Component {
                             <h4>Notify me when...</h4>
                         </div>
                         <div className="desired-body">
-                            <label>Price is less than:</label>
-                            <input type="number" id="price" name="price" />
+                            <div>
+                                <p>Total price is less than</p>
+                                <input type="number" id="price" name="price" />
+                                <p></p>
+                            </div>
+                            <div>
+                                <p>Item is back in stock</p>
+                                <input type="checkbox" disabled="true" className="disabled" />
+                            </div>
+                        </div>
+                        <div className="desired-action">
+                            <button>Notify me</button>
                         </div>
                     </div>
                 </div>
