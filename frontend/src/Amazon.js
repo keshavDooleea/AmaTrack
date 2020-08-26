@@ -114,7 +114,12 @@ class Amazon extends Component {
                             <p>In stock? <span>{this.state.data.stockNb}</span></p>
                         </div>
                     </div>
-                    <div className="desired-info"></div>
+                    <div className="desired-info">
+                        <div className="desired-header">
+                            <h4>Notify me when...</h4>
+                        </div>
+                        <div className="desired-body"></div>
+                    </div>
                 </div>
             </div >
         );
