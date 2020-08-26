@@ -57,7 +57,7 @@ async function find(url) {
         });
 
         // total price of item 
-        const totalPrice = parseFloat(price) + shipping;
+        const totalPrice = parseFloat(price) + parseFloat(shipping);
 
         return {
             stockNb,

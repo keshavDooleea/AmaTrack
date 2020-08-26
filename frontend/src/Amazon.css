@@ -409,7 +409,8 @@
 }
 
 .body .third-layer .info-container .desired-info .desired-action button {
-  background: #ed9220;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6c88f), to(#ed9220));
+  background: linear-gradient(to bottom, #f6c88f, #ed9220);
   border-radius: var(--radius);
   outline: none;
   border-color: #ca7c1b #be751a #a56616;

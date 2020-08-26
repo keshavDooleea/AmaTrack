@@ -275,7 +275,7 @@
                     @include flexin(row, center, center);
 
                     button {
-                        background: #ed9220;
+                        background: linear-gradient(to bottom,#f6c88f,#ed9220);
                         border-radius: var(--radius);
                         outline: none;
                         border-color: #ca7c1b #be751a #a56616;
