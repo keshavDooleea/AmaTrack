@@ -25,10 +25,36 @@ router.get("/scrapeInfo", async (req, res) => {
     res.json(item);
 });
 
-router.post("/insertDB", (req, res) => {
+router.post("/insertDB", async (req, res) => {
     const data = req.body;
     console.log(data);
-    res.send("goteeem");
+
+    await Product.findOne({ key: data.key }, async (err, product) => {
+        if (err) {
+            console.log(typeof data.key);
+            console.log(`/insertDB ERROR : ${err}`);
+            res.json(err);
+        }
+
+
+        // inexistant
+        if (product === null) {
+            const newProduct = new Product({
+                url: data.url,
+                key: data.key,
+                email: data.email,
+                actualPrice: data.actualPrice,
+                desiredPrice: data.desiredPrice,
+                isInStock: true
+            });
+
+            await newProduct.save();
+            console.log(`new product saved`);
+            res.json({
+                status: 200
+            });
+        }
+    });
 });
 
 router.delete("/deleteImg", (req, res) => {

@@ -6,8 +6,12 @@ const productSchema = new mongo.Schema({
         required: true,
     },
     key: {
-        type: Number,
+        type: String,
         required: true,
+    },
+    email: {
+        type: String,
+        required: true
     },
     actualPrice: {
         type: Number,

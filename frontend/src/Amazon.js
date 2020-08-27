@@ -119,9 +119,9 @@ class Amazon extends Component {
                 url: "/product/insertDB",
                 data: {
                     email,
-                    actualPrice: inputPrice,
                     key: data.key,
-                    price: data.totalPrice,
+                    actualPrice: inputPrice,
+                    desiredPrice: data.totalPrice,
                     url: this.state.url
                 }
             }).then(res => {
