@@ -141,12 +141,12 @@ class Amazon extends Component {
                         </div>
                         <div className="desired-body">
                             <div>
-                                <p>Total price is less than</p>
-                                <input type="number" className="input-price" />
-                            </div>
-                            <div>
                                 <p>Item is back in stock</p>
                                 <input type="checkbox" disabled={true} className="disabled input-stock" />
+                            </div>
+                            <div>
+                                <p>Total price is less than</p>
+                                <input type="number" className="input-price" />
                             </div>
                             <div>
                                 <p>Enter your email</p>
