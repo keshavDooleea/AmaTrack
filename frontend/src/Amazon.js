@@ -126,7 +126,8 @@ class Amazon extends Component {
                 }
             }).then(res => {
                 if (res.status === 200) {
-                    console.log("DW");
+                    document.querySelector(".notify-price").textContent = inputPrice;
+                    document.querySelector(".notify-email").textContent = email;
                     document.querySelector(".info-container").classList.add("response-result");
                 }
             })
@@ -181,7 +182,23 @@ class Amazon extends Component {
 
                     {/* hidden underneath containers   */}
                     <div className="success-response-container">
-
+                        <div className="success-top">
+                            <i className="fas fa-check-square"></i>
+                            <h4>Success</h4>
+                        </div>
+                        <div className="success-sec">
+                            <p>You will be notified when the price drops below $<span className="notify-price"></span> at <span className="notify-email"></span></p>
+                        </div>
+                        <div className="success-third">
+                            <h4>{data.key}</h4>
+                            <p>Enter the above key under <span>Unsubscribe</span> to stop receiving an alert.</p>
+                        </div>
+                        <div className="success-forth">
+                            <small>Don't Worry!<br />You must have received an email containing all these informations.</small>
+                        </div>
+                        <div className="success-bottom">
+                            <a href="/">Done</a>
+                        </div>
                     </div>
                 </div>
             </div >

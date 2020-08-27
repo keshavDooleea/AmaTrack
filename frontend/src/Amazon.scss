@@ -326,6 +326,81 @@
                 border-radius: var(--radius);
                 box-shadow:  var(--boxShadow);
                 transition: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                @include flexin(column, center, center);
+                padding: 10px 15px;
+
+                div {
+                    width: 100%;
+                    @include flexin(column, center, center);
+
+                    span {
+                        color: #0066c0;
+                    }
+
+                    p, small {
+                        text-align: center;
+                    }
+                }
+
+                .success-top {
+                    height: 20%;
+                    i,h4 {
+                        color: hsl(148, 26%, 48%);
+                    }
+
+                    i {
+                        transform: scale(1.5);
+                    }
+
+                    h4 {
+                        font-size: 20px;
+                        margin-top: 15px;
+                    }
+                }
+
+                .success-sec {
+                    height: 20%;
+                }
+
+                .success-third {
+                    height: 30%;
+
+                    h5 {
+                        font-weight: bolder;
+                    }
+
+                    p {
+                        margin-top: 10px;
+                    }
+                }
+
+                .success-forth {
+                    height: 15%;
+                }
+
+                .success-bottom {
+                    height: 15%;
+
+                    a {
+                        padding: 7px 20px;
+                        background: linear-gradient(to bottom,#f6c88f,#ed9220);
+                        border-radius: var(--radius);
+                        border-color: #ca7c1b #be751a #a56616;
+                        cursor: pointer;
+                        border-style: solid;
+                        border-width: 1px;
+                        box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+                        text-decoration: none;
+                        color: black;
+                      
+                        &:active {
+                            border-color: #ca7c1b #be751a #be751a;
+                            background-color: #ed9220;
+                            background-image: none;
+                            box-shadow: 0 1px 3px rgba(0,0,0,.2) inset;
+                        }
+                    }
+                }
             }
         }
     }

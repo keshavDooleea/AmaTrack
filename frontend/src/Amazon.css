@@ -456,6 +456,110 @@
           box-shadow: var(--boxShadow);
   -webkit-transition: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition: 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 15px;
+}
+
+.body .third-layer .info-container .success-response-container div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.body .third-layer .info-container .success-response-container div span {
+  color: #0066c0;
+}
+
+.body .third-layer .info-container .success-response-container div p, .body .third-layer .info-container .success-response-container div small {
+  text-align: center;
+}
+
+.body .third-layer .info-container .success-response-container .success-top {
+  height: 20%;
+}
+
+.body .third-layer .info-container .success-response-container .success-top i, .body .third-layer .info-container .success-response-container .success-top h4 {
+  color: #5b9a78;
+}
+
+.body .third-layer .info-container .success-response-container .success-top i {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.body .third-layer .info-container .success-response-container .success-top h4 {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.body .third-layer .info-container .success-response-container .success-sec {
+  height: 20%;
+}
+
+.body .third-layer .info-container .success-response-container .success-third {
+  height: 30%;
+}
+
+.body .third-layer .info-container .success-response-container .success-third h5 {
+  font-weight: bolder;
+}
+
+.body .third-layer .info-container .success-response-container .success-third p {
+  margin-top: 10px;
+}
+
+.body .third-layer .info-container .success-response-container .success-forth {
+  height: 15%;
+}
+
+.body .third-layer .info-container .success-response-container .success-bottom {
+  height: 15%;
+}
+
+.body .third-layer .info-container .success-response-container .success-bottom a {
+  padding: 7px 20px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6c88f), to(#ed9220));
+  background: linear-gradient(to bottom, #f6c88f, #ed9220);
+  border-radius: var(--radius);
+  border-color: #ca7c1b #be751a #a56616;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  text-decoration: none;
+  color: black;
+}
+
+.body .third-layer .info-container .success-response-container .success-bottom a:active {
+  border-color: #ca7c1b #be751a #be751a;
+  background-color: #ed9220;
+  background-image: none;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
 }
 
 .welcome-div {
