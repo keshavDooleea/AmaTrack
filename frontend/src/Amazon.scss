@@ -284,6 +284,7 @@
                 .desired-action {
                     width: 100%;
                     height: 20%;
+                    position: relative;
                     @include flexin(row, center, center);
 
                     button {
@@ -312,6 +313,15 @@
                             background-image: none;
                             box-shadow: 0 1px 3px rgba(0,0,0,.2) inset;
                         }
+                    }
+
+                    .email-preloader {
+                        width: 9%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        display: none;
                     }
                 }
             }
@@ -396,16 +406,19 @@
             .error-response-container {
                 h4 {
                     color: #ea2424;
+                    font-size: 20px;
                 }
 
                 p {
                     margin-top: 10px;
                 }
 
-                .success-bottom {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
+                .error-header  {
+                    height: 30%;
+                }
+
+                .error-detail {
+                    height: 50%;
                 }
             }
         }

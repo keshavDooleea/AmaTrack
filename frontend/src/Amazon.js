@@ -114,6 +114,9 @@ class Amazon extends Component {
             // all good here
             warningText.textContent = "";
 
+            document.querySelector(".desired-action button").style.display = "none";
+            document.querySelector(".email-preloader").style.display = "block";
+
             axios({
                 method: "POST",
                 url: "/product/insertDB",
@@ -131,6 +134,7 @@ class Amazon extends Component {
                     document.querySelector(".notify-email").textContent = email;
                     document.querySelector(".info-container").classList.add("sucess-response-result");
                 } else if (res.data.status === 400) {
+                    document.querySelector(".error-detail p").textContent = res.data.message;
                     document.querySelector(".info-container").classList.add("error-response-result");
                 }
             })
@@ -180,6 +184,7 @@ class Amazon extends Component {
                             <button type="submit" onClick={(e) => this.notifyMe(e)}>
                                 <i className="fas fa-envelope-square"></i>
                                 Notify me</button>
+                            <img className="email-preloader" src={preloader} alt="" />
                         </div>
                     </form>
 
@@ -205,8 +210,13 @@ class Amazon extends Component {
                     </div>
 
                     <div className="error-response-container">
-                        <h4>Sorry!</h4>
-                        <p>some kind of error occured! 😞</p>
+                        <div className="error-header">
+                            <h4>Sorry!</h4>
+                            <p>some kind of error occured! 😞</p>
+                        </div>
+                        <div className="error-detail">
+                            <p></p>
+                        </div>
                         <div className="success-bottom">
                             <a href="/">Restart</a>
                         </div>
