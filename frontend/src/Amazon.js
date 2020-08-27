@@ -98,6 +98,7 @@ class Amazon extends Component {
 
     notifyMe() {
         const inputPrice = document.querySelector(".input-price").value;
+        const email = document.querySelector(".input-email").value;
         const warningText = document.querySelector(".warning-text");
         const data = this.state.data;
 
@@ -105,6 +106,10 @@ class Amazon extends Component {
             warningText.textContent = "Enter an amount above 0";
         } else if (inputPrice >= data.totalPrice) {
             warningText.textContent = `Enter a lower amount than ${data.totalPrice}`;
+        } else if (email.length < 6 || !email.includes("@") || !email.includes(".")) {
+            warningText.textContent = "Invalid email entered";
+        } else {
+            warningText.textContent = "";
         }
     }
 
