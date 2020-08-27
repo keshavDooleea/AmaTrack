@@ -474,6 +474,7 @@
 
 .body .third-layer .info-container .success-response-container div {
   width: 100%;
+  height: 20%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -497,10 +498,6 @@
   text-align: center;
 }
 
-.body .third-layer .info-container .success-response-container .success-top {
-  height: 20%;
-}
-
 .body .third-layer .info-container .success-response-container .success-top i, .body .third-layer .info-container .success-response-container .success-top h4 {
   color: #5b9a78;
 }
@@ -515,28 +512,13 @@
   margin-top: 15px;
 }
 
-.body .third-layer .info-container .success-response-container .success-sec {
-  height: 20%;
-}
-
-.body .third-layer .info-container .success-response-container .success-third {
-  height: 30%;
-}
-
-.body .third-layer .info-container .success-response-container .success-third h5 {
+.body .third-layer .info-container .success-response-container .success-third h4 {
   font-weight: bolder;
+  font-size: 18px;
 }
 
 .body .third-layer .info-container .success-response-container .success-third p {
-  margin-top: 10px;
-}
-
-.body .third-layer .info-container .success-response-container .success-forth {
-  height: 15%;
-}
-
-.body .third-layer .info-container .success-response-container .success-bottom {
-  height: 15%;
+  margin-top: 5px;
 }
 
 .body .third-layer .info-container .success-response-container .success-bottom a {
