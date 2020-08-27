@@ -568,9 +568,18 @@
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
 }
 
-.body .third-layer .info-container .error-response-container h4 {
+.body .third-layer .info-container .error-response-container i {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.body .third-layer .info-container .error-response-container i, .body .third-layer .info-container .error-response-container h4 {
   color: #ea2424;
   font-size: 20px;
+}
+
+.body .third-layer .info-container .error-response-container h4 {
+  margin-top: 20px;
 }
 
 .body .third-layer .info-container .error-response-container p {

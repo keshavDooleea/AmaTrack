@@ -211,8 +211,9 @@ class Amazon extends Component {
 
                     <div className="error-response-container">
                         <div className="error-header">
+                            <i className="fas fa-times-circle"></i>
                             <h4>Sorry!</h4>
-                            <p>some kind of error occured! 😞</p>
+                            <p>Some kind of error occured! 😞</p>
                         </div>
                         <div className="error-detail">
                             <p></p>

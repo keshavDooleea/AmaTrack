@@ -404,12 +404,19 @@
             }
 
             .error-response-container {
-                h4 {
+                i {
+                    transform: scale(1.5);
+                }
+                i, h4 {
                     color: #ea2424;
                     font-size: 20px;
                 }
 
-                p {
+                h4 {
+                    margin-top: 20px;
+                }
+
+                p{
                     margin-top: 10px;
                 }
 
