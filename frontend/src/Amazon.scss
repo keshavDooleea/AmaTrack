@@ -231,7 +231,7 @@
 
                 .desired-body {
                     width: 100%;
-                    height: 60%;
+                    height: 65%;
                     padding: 10px 15px;
 
                     & > div {
@@ -271,6 +271,7 @@
                         align-items: flex-end;
 
                         .warning-text {
+                            grid-area: text;
                             color: #ea2424;
                             text-align: center;
                         }
@@ -280,7 +281,7 @@
 
                 .desired-action {
                     width: 100%;
-                    height: 25%;
+                    height: 20%;
                     @include flexin(row, center, center);
 
                     button {

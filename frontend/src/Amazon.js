@@ -150,7 +150,7 @@ class Amazon extends Component {
                             </div>
                             <div>
                                 <p>Enter your email</p>
-                                <input type="email" className="input-email" />
+                                <input type="email" spellCheck={false} className="input-email" />
                             </div>
                             <div className="warning-div">
                                 <p className="warning-text"></p>
