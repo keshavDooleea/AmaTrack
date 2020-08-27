@@ -423,6 +423,14 @@
           box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
+.body .third-layer .info-container .desired-info .desired-action button:active {
+  border-color: #ca7c1b #be751a #be751a;
+  background-color: #ed9220;
+  background-image: none;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
 .welcome-div {
   width: 20%;
   height: 14vh;
