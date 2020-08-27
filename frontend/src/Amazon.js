@@ -123,6 +123,7 @@ class Amazon extends Component {
                 data: {
                     email,
                     key: data.key,
+                    title: data.title,
                     actualPrice: data.totalPrice,
                     desiredPrice: inputPrice,
                     url: this.state.url
