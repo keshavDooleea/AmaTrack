@@ -543,8 +543,9 @@
   margin-top: 5px;
 }
 
-.body .third-layer .info-container .success-response-container .success-bottom a,
-.body .third-layer .info-container .error-response-container .success-bottom a {
+.body .third-layer .info-container .success-response-container .success-bottom a, .body .third-layer .info-container .success-response-container .success-bottom button,
+.body .third-layer .info-container .error-response-container .success-bottom a,
+.body .third-layer .info-container .error-response-container .success-bottom button {
   padding: 7px 20px;
   background: -webkit-gradient(linear, left top, left bottom, from(#f6c88f), to(#ed9220));
   background: linear-gradient(to bottom, #f6c88f, #ed9220);
@@ -559,8 +560,9 @@
   color: black;
 }
 
-.body .third-layer .info-container .success-response-container .success-bottom a:active,
-.body .third-layer .info-container .error-response-container .success-bottom a:active {
+.body .third-layer .info-container .success-response-container .success-bottom a:active, .body .third-layer .info-container .success-response-container .success-bottom button:active,
+.body .third-layer .info-container .error-response-container .success-bottom a:active,
+.body .third-layer .info-container .error-response-container .success-bottom button:active {
   border-color: #ca7c1b #be751a #be751a;
   background-color: #ed9220;
   background-image: none;

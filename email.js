@@ -1,6 +1,9 @@
 require("dotenv/config");
 let mailer = require("nodemailer");
 
+// mongo schemas
+const Product = require("./modals/productSchema").Product;
+
 function createTransport() {
     return mailer.createTransport({
         host: "smtp.mail.yahoo.com",
@@ -13,7 +16,7 @@ function createTransport() {
     });
 }
 
-async function sendConfirmationEmail(email, res) {
+async function sendConfirmationEmail(email, key, res) {
     let transporter = createTransport();
 
     let html = "yooo";
@@ -29,6 +32,10 @@ async function sendConfirmationEmail(email, res) {
     transporter.sendMail(mail, async (error, info) => {
         if (error) {
             console.log(`EMAIL ERROR: ${error}`);
+
+            // remove key from db
+            await Product.findOneAndDelete({ key: key });
+
             res.json({
                 status: 400,
                 message: `EMAIL ERROR: ${error}`

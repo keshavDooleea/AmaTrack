@@ -123,8 +123,8 @@ class Amazon extends Component {
                 data: {
                     email,
                     key: data.key,
-                    actualPrice: inputPrice,
-                    desiredPrice: data.totalPrice,
+                    actualPrice: data.totalPrice,
+                    desiredPrice: inputPrice,
                     url: this.state.url
                 }
             }).then(res => {
@@ -139,6 +139,13 @@ class Amazon extends Component {
                 }
             })
         }
+    }
+
+    bringBackInfo() {
+        document.querySelector(".desired-action button").style.display = "block";
+        document.querySelector(".email-preloader").style.display = "none";
+        document.querySelector(".info-container").classList.remove("error-response-result");
+        document.querySelector(".input-email").value = "";
     }
 
     showProductInfo() {
@@ -219,7 +226,7 @@ class Amazon extends Component {
                             <p></p>
                         </div>
                         <div className="success-bottom">
-                            <a href="/">Restart</a>
+                            <button className="error-retry-btn" onClick={this.bringBackInfo}>Retry</button>
                         </div>
                     </div>
                 </div>
