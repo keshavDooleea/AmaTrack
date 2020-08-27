@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.redirect('/product');
-});
+// app.get("/", (req, res) => {
+//     // res.redirect('/product');
+// });
 
 app.use("/product", require("./routes/product"));
 
