@@ -233,40 +233,48 @@
                     width: 100%;
                     height: 60%;
                     padding: 10px 15px;
-                    @include flexin(row, center, flex-start);
 
-                    div {
-                        width: 50%;
-                        height: 100%;
-                      @include flexin(column, center, flex-start);
+                    & > div {
+                        width: 100%;
+                        height: 25%;
+                        display: grid;
+                        grid-template-columns: 50% 50%;
+                        grid-template-areas: "text field";
+                        align-items: center;
 
-                      &:nth-child(1) {
-                        border-right: 1px #ddd solid;
-                      }
+                        p {
+                            grid-area: text;
+                        }
 
-                      &:nth-child(2) input {
-                        width: 25px;
-                        cursor: pointer;
-                      }
+                        input {
+                            grid-area: field;
+                            height: 80%;
+                            border-radius: var(--radius);
+                            border: 1px solid;
+                            border-color: #c4cad5;
+                            box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+                            background: linear-gradient(to bottom,#f7f8fa,#e7e9ec);
 
-                      input {
-                          width: 50%;
-                          height: 30px;
-                          margin-top: 15px;
-                          border-radius: var(--radius);
-                          border: 1px #ddd solid;
-                          padding: 0 10px;
-                          
-                          &:focus {
-                              outline-color: orange;
-                          }
-                      }
+                            &:focus {
+                                outline-color: orange;
+                            }
+                        }
+
+                        input[type="checkbox"] {
+                            width: 10%;
+                        }
                     }
 
-                    .warning-text {
-                        margin-top: 10px;
-                        color: #ea2424;
+                    .warning-div {
+                        grid-template-areas: "text text";
+                        align-items: flex-end;
+
+                        .warning-text {
+                            color: #ea2424;
+                            text-align: center;
+                        }
                     }
+
                 }
 
                 .desired-action {

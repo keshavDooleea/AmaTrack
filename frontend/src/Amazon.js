@@ -102,9 +102,9 @@ class Amazon extends Component {
         const data = this.state.data;
 
         if (inputPrice === "") {
-            warningText.textContent = "Enter an amount";
+            warningText.textContent = "Enter an amount above 0";
         } else if (inputPrice >= data.totalPrice) {
-            warningText.textContent = "Enter a lower amount";
+            warningText.textContent = `Enter a lower amount than ${data.totalPrice}`;
         }
     }
 
@@ -134,11 +134,17 @@ class Amazon extends Component {
                             <div>
                                 <p>Total price is less than</p>
                                 <input type="number" className="input-price" />
-                                <small className="warning-text"></small>
                             </div>
                             <div>
                                 <p>Item is back in stock</p>
                                 <input type="checkbox" disabled={true} className="disabled input-stock" />
+                            </div>
+                            <div>
+                                <p>Enter your email</p>
+                                <input type="email" className="input-email" />
+                            </div>
+                            <div className="warning-div">
+                                <p className="warning-text"></p>
                             </div>
                         </div>
                         <div className="desired-action">
