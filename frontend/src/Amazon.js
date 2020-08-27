@@ -125,7 +125,10 @@ class Amazon extends Component {
                     url: this.state.url
                 }
             }).then(res => {
-                console.log(res);
+                if (res.status === 200) {
+                    console.log("DW");
+                    document.querySelector(".info-container").classList.add("response-result");
+                }
             })
         }
     }
@@ -175,6 +178,11 @@ class Amazon extends Component {
                                 Notify me</button>
                         </div>
                     </form>
+
+                    {/* hidden underneath containers   */}
+                    <div className="success-response-container">
+
+                    </div>
                 </div>
             </div >
         );
