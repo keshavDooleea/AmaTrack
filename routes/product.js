@@ -30,14 +30,6 @@ router.post("/insertDB", async (req, res) => {
     console.log(data);
 
     await Product.findOne({ key: data.key }, async (err, product) => {
-        if (err) {
-            console.log(`/insertDB ERROR : ${err}`);
-            res.json({
-                status: 400,
-                message: err
-            });
-        }
-
         // inexistant
         if (product === null) {
             const newProduct = new Product({
@@ -50,12 +42,13 @@ router.post("/insertDB", async (req, res) => {
             });
 
             await newProduct.save();
-            console.log(`new product saved`);
+            console.log(`new product saved: ${data.key}`);
 
             // send email here
             email.sendConfirmationEmail(data.email, data.key, res);
         }
         else {
+            console.log(`/insertDB ERROR : ${err}`);
             res.json({
                 status: 400,
                 message: err

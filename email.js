@@ -35,6 +35,7 @@ async function sendConfirmationEmail(email, key, res) {
 
             // remove key from db
             await Product.findOneAndDelete({ key: key });
+            console.log(`key deleted: ${key}`);
 
             res.json({
                 status: 400,

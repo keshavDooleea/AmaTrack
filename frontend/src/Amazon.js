@@ -202,14 +202,14 @@ class Amazon extends Component {
                             <h4>Success</h4>
                         </div>
                         <div className="success-sec">
-                            <p>You will be notified when the price drops below $<span className="notify-price"></span> at <span className="notify-email"></span></p>
+                            <p>You will be notified when the price drops below $<span className="notify-price"></span> at <span className="notify-email"></span>!</p>
                         </div>
                         <div className="success-third">
                             <h4>{data.key}</h4>
                             <p>Enter the above key under <span>Unsubscribe</span> to stop receiving an alert.</p>
                         </div>
                         <div className="success-forth">
-                            <small>Don't Worry!<br />You must have received an email containing all these informations.</small>
+                            <small>Don't Worry! <span role="img" aria-label="smile">😄</span><br />You must have received an email containing all these informations.</small>
                         </div>
                         <div className="success-bottom">
                             <a href="/">Done</a>
@@ -220,7 +220,7 @@ class Amazon extends Component {
                         <div className="error-header">
                             <i className="fas fa-times-circle"></i>
                             <h4>Sorry!</h4>
-                            <p>Some kind of error occured! 😞</p>
+                            <p>Some kind of error occured! <span role="img" aria-label="sad">😞</span></p>
                         </div>
                         <div className="error-detail">
                             <p></p>
