@@ -96,7 +96,9 @@ class Amazon extends Component {
         });
     }
 
-    notifyMe() {
+    notifyMe(e) {
+        e.preventDefault();
+
         const inputPrice = document.querySelector(".input-price").value;
         const email = document.querySelector(".input-email").value;
         const warningText = document.querySelector(".warning-text");
@@ -111,6 +113,7 @@ class Amazon extends Component {
         } else {
             // all good here
             warningText.textContent = "";
+            alert("DW");
         }
     }
 
@@ -132,7 +135,7 @@ class Amazon extends Component {
                             <p>In stock? <span>{data.stockNb}</span></p>
                         </div>
                     </div>
-                    <div className="desired-info">
+                    <form className="desired-info">
                         <div className="desired-header">
                             <h4>Notify me when...</h4>
                         </div>
@@ -154,9 +157,9 @@ class Amazon extends Component {
                             </div>
                         </div>
                         <div className="desired-action">
-                            <button onClick={() => this.notifyMe()}>Notify me</button>
+                            <button type="submit" onClick={(e) => this.notifyMe(e)}>Notify me</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div >
         );
