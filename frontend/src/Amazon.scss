@@ -285,15 +285,24 @@
                     @include flexin(row, center, center);
 
                     button {
+                        width: 40%;
                         background: linear-gradient(to bottom,#f6c88f,#ed9220);
                         border-radius: var(--radius);
                         outline: none;
                         border-color: #ca7c1b #be751a #a56616;
                         cursor: pointer;
-                        padding: 8px 14px;
+                        padding: 8px 0px;
                         border-style: solid;
                         border-width: 1px;
                         box-shadow: 0 1px 0 rgba(255,255,255,.6) inset;
+                        position: relative;
+
+                        i {
+                            position: absolute;
+                            top: 50%;
+                            left: 10px;
+                            transform: translateY(-50%) scale(2);
+                        }
 
                         &:active {
                             border-color: #ca7c1b #be751a #be751a;

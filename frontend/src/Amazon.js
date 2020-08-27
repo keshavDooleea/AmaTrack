@@ -157,7 +157,9 @@ class Amazon extends Component {
                             </div>
                         </div>
                         <div className="desired-action">
-                            <button type="submit" onClick={(e) => this.notifyMe(e)}>Notify me</button>
+                            <button type="submit" onClick={(e) => this.notifyMe(e)}>
+                                <i class="fas fa-envelope-square"></i>
+                                Notify me</button>
                         </div>
                     </form>
                 </div>

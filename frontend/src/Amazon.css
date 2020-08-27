@@ -410,17 +410,27 @@
 }
 
 .body .third-layer .info-container .desired-info .desired-action button {
+  width: 40%;
   background: -webkit-gradient(linear, left top, left bottom, from(#f6c88f), to(#ed9220));
   background: linear-gradient(to bottom, #f6c88f, #ed9220);
   border-radius: var(--radius);
   outline: none;
   border-color: #ca7c1b #be751a #a56616;
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 8px 0px;
   border-style: solid;
   border-width: 1px;
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
           box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  position: relative;
+}
+
+.body .third-layer .info-container .desired-info .desired-action button i {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  -webkit-transform: translateY(-50%) scale(2);
+          transform: translateY(-50%) scale(2);
 }
 
 .body .third-layer .info-container .desired-info .desired-action button:active {
