@@ -19,9 +19,9 @@ async function checkKey() {
     let product = {};
     let myKey;
 
+    // checks is key is unique, else regenerate
     while (product !== null) {
         myKey = randomKey(8);
-        console.log(myKey);
         product = await Product.findOne({ key: myKey });
     }
 
@@ -41,7 +41,6 @@ async function find(url) {
 
         // key
         key = await checkKey();
-        console.log(key);
 
         // take screenshot
         const browser = await puppeteer.launch({ defaultViewport: null });
