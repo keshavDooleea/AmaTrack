@@ -1,6 +1,5 @@
 require("dotenv/config");
 let mailer = require("nodemailer");
-let confirmationStatus;
 
 function createTransport() {
     return mailer.createTransport({
@@ -9,12 +8,12 @@ function createTransport() {
         service: "yahoo",
         auth: {
             user: "rkdooleea@yahoo.com",
-            //   pass: process.env.PASSWORD,
+            pass: process.env.PASSWORD,
         },
     });
 }
 
-async function sendConfirmationEmail(email) {
+async function sendConfirmationEmail(email, res) {
     let transporter = createTransport();
 
     let html = "yooo";
@@ -22,32 +21,26 @@ async function sendConfirmationEmail(email) {
     let mail = {
         from: "rkdooleea@yahoo.com",
         to: `${email}`,
-        subject: `Amazon pricedrop!`,
+        // subject: `Amazon price drop!`,
+        subject: "AmaTrack alert confirmation",
         html: html,
     };
 
     transporter.sendMail(mail, async (error, info) => {
         if (error) {
             console.log(`EMAIL ERROR: ${error}`);
-            confirmationStatus = {
+            res.json({
                 status: 400,
                 message: `EMAIL ERROR: ${error}`
-            }
+            })
         } else {
             console.log(`EMAIL SENT SUCCESSFULLY: ${info.response}`);
-            confirmationStatus = {
+            res.json({
                 status: 200,
                 message: `EMAIL SENT SUCCESSFULLY: ${info.response}`
-            }
+            })
         }
-
-        return confirmationStatus;
     });
 }
 
-function getConfirmationStatus() {
-    return confirmationStatus;
-}
-
 exports.sendConfirmationEmail = sendConfirmationEmail;
-exports.getConfirmationStatus = getConfirmationStatus;

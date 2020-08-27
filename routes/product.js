@@ -53,20 +53,7 @@ router.post("/insertDB", async (req, res) => {
             console.log(`new product saved`);
 
             // send email here
-            const confirm = await email.sendConfirmationEmail(data.email);
-            const confirmation = email.getConfirmationStatus();
-            console.log(confirm);
-
-            // send back response
-            if (mail.status === 200) {
-                res.json({
-                    status: 200
-                });
-            } else {
-                res.json({
-                    status: 400
-                });
-            }
+            email.sendConfirmationEmail(data.email, res);
         }
         else {
             res.json({
