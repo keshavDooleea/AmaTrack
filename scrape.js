@@ -2,6 +2,9 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const puppeteer = require('puppeteer');
 
+// mongo schemas
+const Product = require("./modals/productSchema").Product;
+
 // extracts number from text/string
 function getNumber(string) {
     return string.match(/\d+(?:\.\d+)?/g).join("");
@@ -10,6 +13,19 @@ function getNumber(string) {
 // generate random key
 function randomKey(length) {
     return Math.round((Math.pow(36, length + 1) - Math.random() * Math.pow(36, length))).toString(36).slice(1);
+}
+
+async function checkKey() {
+    let product = {};
+    let myKey;
+
+    while (product !== null) {
+        myKey = randomKey(8);
+        console.log(myKey);
+        product = await Product.findOne({ key: myKey });
+    }
+
+    return myKey;
 }
 
 // get page source contents
@@ -24,7 +40,8 @@ async function find(url) {
         title = $("#productTitle.a-size-large.product-title-word-break").text();
 
         // key
-        key = randomKey(8);
+        key = await checkKey();
+        console.log(key);
 
         // take screenshot
         const browser = await puppeteer.launch({ defaultViewport: null });
