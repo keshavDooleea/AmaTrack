@@ -109,6 +109,7 @@ class Amazon extends Component {
         } else if (email.length < 6 || !email.includes("@") || !email.includes(".")) {
             warningText.textContent = "Invalid email entered";
         } else {
+            // all good here
             warningText.textContent = "";
         }
     }
@@ -183,12 +184,16 @@ class Amazon extends Component {
 
         if (this.state.url === "") {
             this.riseWelcomeDiv();
+            document.querySelector(".welcome-div p").textContent = "Enter a valid Amazon URL";
+            document.querySelector(".welcome-div").classList.add("error-validation");
         } else if (!this.state.url.startsWith("https://www.amazon.ca/") && !this.state.url.startsWith("www.amazon.ca/") && !this.state.url.startsWith("amazon.ca/")) {
             this.riseWelcomeDiv();
             document.querySelector(".welcome-div p").textContent = "Enter a valid Amazon URL";
             document.querySelector(".welcome-div").classList.add("error-validation");
             return;
         } else {
+            document.querySelector(".welcome-div p").textContent = "All good!";
+            document.querySelector(".welcome-div").classList.add("success-validation");
             this.dropWelcomeDiv();
 
             // show loading spinner

@@ -487,6 +487,11 @@
   background-color: #d2322d;
 }
 
+.success-validation {
+  color: #fff;
+  background-color: #5b9a78;
+}
+
 .drop {
   -webkit-animation: drop 1.5s forwards;
           animation: drop 1.5s forwards;
