@@ -113,7 +113,20 @@ class Amazon extends Component {
         } else {
             // all good here
             warningText.textContent = "";
-            alert("DW");
+
+            axios({
+                method: "POST",
+                url: "/product/insertDB",
+                data: {
+                    email,
+                    actualPrice: inputPrice,
+                    key: data.key,
+                    price: data.totalPrice,
+                    url: this.state.url
+                }
+            }).then(res => {
+                console.log(res);
+            })
         }
     }
 
@@ -158,7 +171,7 @@ class Amazon extends Component {
                         </div>
                         <div className="desired-action">
                             <button type="submit" onClick={(e) => this.notifyMe(e)}>
-                                <i class="fas fa-envelope-square"></i>
+                                <i className="fas fa-envelope-square"></i>
                                 Notify me</button>
                         </div>
                     </form>

@@ -25,8 +25,10 @@ router.get("/scrapeInfo", async (req, res) => {
     res.json(item);
 });
 
-router.get("/notify", (req, res) => {
-    res.send("/notify");
+router.post("/insertDB", (req, res) => {
+    const data = req.body;
+    console.log(data);
+    res.send("goteeem");
 });
 
 router.delete("/deleteImg", (req, res) => {
