@@ -3,8 +3,8 @@ const router = require("express").Router();
 const mongo = require("mongoose");
 const scrapeProduct = require("../scrape");
 const fs = require('fs')
-let mailer = require("nodemailer");
 const { type } = require("os");
+const email = require("../email");
 
 // mongo schemas
 const Product = require("../modals/productSchema").Product;
@@ -31,11 +31,12 @@ router.post("/insertDB", async (req, res) => {
 
     await Product.findOne({ key: data.key }, async (err, product) => {
         if (err) {
-            console.log(typeof data.key);
             console.log(`/insertDB ERROR : ${err}`);
-            res.json(err);
+            res.json({
+                status: 400,
+                message: err
+            });
         }
-
 
         // inexistant
         if (product === null) {
@@ -50,8 +51,27 @@ router.post("/insertDB", async (req, res) => {
 
             await newProduct.save();
             console.log(`new product saved`);
+
+            // send email here
+            const confirm = await email.sendConfirmationEmail(data.email);
+            const confirmation = email.getConfirmationStatus();
+            console.log(confirm);
+
+            // send back response
+            if (mail.status === 200) {
+                res.json({
+                    status: 200
+                });
+            } else {
+                res.json({
+                    status: 400
+                });
+            }
+        }
+        else {
             res.json({
-                status: 200
+                status: 400,
+                message: err
             });
         }
     });

@@ -128,7 +128,9 @@ class Amazon extends Component {
                 if (res.status === 200) {
                     document.querySelector(".notify-price").textContent = inputPrice;
                     document.querySelector(".notify-email").textContent = email;
-                    document.querySelector(".info-container").classList.add("response-result");
+                    document.querySelector(".info-container").classList.add("sucess-response-result");
+                } else if (res.status === 400) {
+                    document.querySelector(".info-container").classList.add("error-response-result");
                 }
             })
         }
@@ -198,6 +200,14 @@ class Amazon extends Component {
                         </div>
                         <div className="success-bottom">
                             <a href="/">Done</a>
+                        </div>
+                    </div>
+
+                    <div className="error-response-container">
+                        <h4>Sorry!</h4>
+                        <p>some kind of error occured!</p>
+                        <div className="success-bottom">
+                            <a href="/">Restart</a>
                         </div>
                     </div>
                 </div>

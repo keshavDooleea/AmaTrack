@@ -316,7 +316,8 @@
                 }
             }
 
-            .success-response-container {
+            .success-response-container,
+            .error-response-container {
                 position: absolute;
                 top: 200%;
                 left: 0;
@@ -391,6 +392,22 @@
                     }
                 }
             }
+
+            .error-response-container {
+                h4 {
+                    color: #ea2424;
+                }
+
+                small {
+                    margin-top: 10px;
+                }
+
+                .success-bottom {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
         }
     }
 }
@@ -461,13 +478,25 @@
     animation: rise 1.5s forwards;
 }
 
-.response-result {
+.sucess-response-result {
     .actual-info,
     .desired-info {
         transform: translateY(-100vh);
     }
 
     .success-response-container {
+        top: 0 !important;
+        left: 0;
+    }
+}
+
+.error-response-result {
+    .actual-info,
+    .desired-info {
+        transform: translateY(-100vh);
+    }
+
+    .error-response-container {
         top: 0 !important;
         left: 0;
     }
