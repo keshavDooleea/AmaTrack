@@ -1,8 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 
+var api = new ParseServer({
+    databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
+    cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
+    appId: process.env.APP_ID || 'myAppId',
+    masterKey: process.env.MASTER_KEY || 'myMasterKey'
+});
+
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Serve the Parse API on the /parse URL prefix
+var mountPath = process.env.PARSE_MOUNT || '/parse';
 
 app.use(cors());
 app.use(express.json());
