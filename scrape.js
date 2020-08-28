@@ -32,14 +32,14 @@ async function checkKey() {
 async function find(url) {
     // make http request to get source content
     try {
-        const { data } = await axios.get(url);
-        const $ = cheerio.load(data); // loads html
+        // const { data } = await axios.get(url);
+        // const $ = cheerio.load(data); // loads html
         let stockNb, price, title, shipping, key;
 
         console.log("find fonction")
 
         // get title
-        title = $("#productTitle.a-size-large.product-title-word-break").text();
+        // title = $("#productTitle.a-size-large.product-title-word-break").text();
 
         // key
         key = await checkKey();
@@ -58,33 +58,42 @@ async function find(url) {
 
 
         // get stock amount
-        const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
-        stockHtmlTags.forEach(tag => {
-            tag !== "" ? stockNb = tag : null;
-        });
+        // const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
+        // stockHtmlTags.forEach(tag => {
+        //     tag !== "" ? stockNb = tag : null;
+        // });
 
-        // finding correct price
-        const priceHtmlTags = [$("#price_inside_buybox.a-size-medium.a-color-price").text(), $("#priceblock_ourprice.a-size-medium.a-color-price").text()];
-        priceHtmlTags.forEach(tag => {
-            tag !== "" ? price = getNumber(tag) : null;
-        });
+        // // finding correct price
+        // const priceHtmlTags = [$("#price_inside_buybox.a-size-medium.a-color-price").text(), $("#priceblock_ourprice.a-size-medium.a-color-price").text()];
+        // priceHtmlTags.forEach(tag => {
+        //     tag !== "" ? price = getNumber(tag) : null;
+        // });
 
-        // getting shipping costs
-        const shippingHtmlTags = [$("#ourprice_shippingmessage .a-color-secondary.a-size-base").text()];
-        shippingHtmlTags.forEach(tag => {
-            tag !== "" ? shipping = getNumber(tag) : shipping = 0;
-        });
+        // // getting shipping costs
+        // const shippingHtmlTags = [$("#ourprice_shippingmessage .a-color-secondary.a-size-base").text()];
+        // shippingHtmlTags.forEach(tag => {
+        //     tag !== "" ? shipping = getNumber(tag) : shipping = 0;
+        // });
 
-        // total price of item 
-        const totalPrice = parseFloat(price) + parseFloat(shipping);
+        // // total price of item 
+        // const totalPrice = parseFloat(price) + parseFloat(shipping);
 
+        // return {
+        //     stockNb,
+        //     price,
+        //     title,
+        //     shipping,
+        //     totalPrice,
+        //     key,
+        //     base64img
+        // }
         return {
-            stockNb,
-            price,
-            title,
-            shipping,
-            totalPrice,
-            key,
+            stockNb: 2,
+            price: 909,
+            title: "DWDW",
+            shipping: 0,
+            totalPrice: 1000,
+            key: "1212121",
             base64img
         }
     } catch (error) {
