@@ -45,7 +45,7 @@ async function find(url) {
         key = await checkKey();
 
         // take screenshot
-        const browser = await puppeteer.launch({ defaultViewport: null });
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] }, { defaultViewport: null });
         const page = await browser.newPage();
         await page.setViewport({
             width: 980,
