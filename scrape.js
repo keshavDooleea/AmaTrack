@@ -36,6 +36,8 @@ async function find(url) {
         const $ = cheerio.load(data); // loads html
         let stockNb, price, title, shipping, key;
 
+        console.log("find fonction")
+
         // get title
         title = $("#productTitle.a-size-large.product-title-word-break").text();
 
