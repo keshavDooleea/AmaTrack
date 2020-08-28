@@ -1,14 +1,7 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
 const puppeteer = require('puppeteer');
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
-
-// extracts number from text/string
-function getNumber(string) {
-    return string.match(/\d+(?:\.\d+)?/g).join("");
-}
 
 // generate random key
 function randomKey(length) {
@@ -30,16 +23,8 @@ async function checkKey() {
 
 // get page source contents
 async function find(url) {
-    // make http request to get source content
     try {
-        // const { data } = await axios.get(url);
-        // const $ = cheerio.load(data); // loads html
         let stockNb, price, title, shipping, key;
-
-        console.log("find fonction")
-
-        // get title
-        // title = $("#productTitle.a-size-large.product-title-word-break").text();
 
         // key
         key = await checkKey();
@@ -53,54 +38,66 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
-        })
+        // await page.goto(url, {
+        //     waitUntil: ['load', 'networkidle2', 'domcontentloaded']
+        // })
+        await page.goto(url);
         await page.waitFor(1000)
+
+        // start scrapin here
+
+        // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
+
+        const scrapeData = await page.evaluate(() => {
+            // extracts number from text/string
+            function getNumber(string) {
+                return string.match(/\d+(?:\.\d+)?/g).join("");
+            }
+
+            // get title
+            title = document.querySelector("#productTitle.a-size-large.product-title-word-break").innerText;
+
+            // get stock amount
+            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
+            stockHtmlTags.forEach(tag => {
+                tag !== null ? stockNb = tag.innerText : null;
+            });
+
+            // finding correct price
+            const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            priceHtmlTags.forEach(tag => {
+                tag !== null ? price = getNumber(tag.innerText) : null;
+            });
+
+            //getting shipping costs
+            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            shippingHtmlTags.forEach(tag => {
+                tag !== null ? shipping = getNumber(tag.innerText) : shipping = 0;
+            });
+
+            // total price of item 
+            const totalPrice = parseFloat(price) + parseFloat(shipping);
+
+            return {
+                title,
+                stockNb,
+                price,
+                shipping,
+                totalPrice
+            }
+        });
+
+        // end
         await browser.close();
 
-        console.log("END");
-
-
-
-        // get stock amount
-        // const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
-        // stockHtmlTags.forEach(tag => {
-        //     tag !== "" ? stockNb = tag : null;
-        // });
-
-        // // finding correct price
-        // const priceHtmlTags = [$("#price_inside_buybox.a-size-medium.a-color-price").text(), $("#priceblock_ourprice.a-size-medium.a-color-price").text()];
-        // priceHtmlTags.forEach(tag => {
-        //     tag !== "" ? price = getNumber(tag) : null;
-        // });
-
-        // // getting shipping costs
-        // const shippingHtmlTags = [$("#ourprice_shippingmessage .a-color-secondary.a-size-base").text()];
-        // shippingHtmlTags.forEach(tag => {
-        //     tag !== "" ? shipping = getNumber(tag) : shipping = 0;
-        // });
-
-        // // total price of item 
-        // const totalPrice = parseFloat(price) + parseFloat(shipping);
-
-        // return {
-        //     stockNb,
-        //     price,
-        //     title,
-        //     shipping,
-        //     totalPrice,
-        //     key,
-        //     base64img
-        // }
         return {
-            stockNb: 2,
-            price: 909,
-            title: "DWDW",
-            shipping: 0,
-            totalPrice: 1000,
-            key: "1212121",
+            stockNb: scrapeData.stockNb,
+            price: scrapeData.price,
+            title: scrapeData.title,
+            shipping: scrapeData.shipping,
+            totalPrice: scrapeData.totalPrice,
+            key,
             base64img
         }
     } catch (error) {
