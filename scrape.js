@@ -59,22 +59,26 @@ async function find(url) {
             title = document.querySelector("#productTitle.a-size-large.product-title-word-break").innerText;
 
             // get stock amount
-            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
+            // const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
+            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success")];
             stockHtmlTags.forEach(tag => {
-                tag !== null ? stockNb = tag.innerText : null;
+                tag !== null || tag !== "" ? stockNb = tag.innerText : null;
             });
 
             // finding correct price
-            const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            // const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            const priceHtmlTags = [document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
             priceHtmlTags.forEach(tag => {
-                tag !== null ? price = getNumber(tag.innerText) : null;
+                tag !== null || tag !== "" ? price = getNumber(tag.innerText) : null;
             });
 
             //getting shipping costs
-            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            // const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            const shippingHtmlTags = [];
             shippingHtmlTags.forEach(tag => {
-                tag !== null ? shipping = getNumber(tag.innerText) : shipping = 0;
+                tag !== null || tag !== "" ? shipping = getNumber(tag.innerText) : shipping = 0;
             });
+            shipping = 0;
 
             // total price of item 
             const totalPrice = parseFloat(price) + parseFloat(shipping);
