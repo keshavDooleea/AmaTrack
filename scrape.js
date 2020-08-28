@@ -59,7 +59,10 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url);
+        await page.goto(url, {
+            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
+        });
+        await page.waitFor(1000)
         const base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
