@@ -45,26 +45,26 @@ async function find(url) {
         key = await checkKey();
 
         // take screenshot
-        const browser = await puppeteer.launch({
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--single-process'
-            ]
-        }, { defaultViewport: null });
-        const page = await browser.newPage();
-        await page.setViewport({
-            width: 980,
-            height: 830,
-            deviceScaleFactor: 1,
-        });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
-        });
-        await page.waitFor(1000)
-        const base64img = await page.screenshot({ encoding: "base64" });
-        await browser.close();
+        // const browser = await puppeteer.launch({
+        //     args: [
+        //         '--no-sandbox',
+        //         '--disable-setuid-sandbox',
+        //         '--disable-dev-shm-usage',
+        //         '--single-process'
+        //     ]
+        // }, { defaultViewport: null });
+        // const page = await browser.newPage();
+        // await page.setViewport({
+        //     width: 980,
+        //     height: 830,
+        //     deviceScaleFactor: 1,
+        // });
+        // await page.goto(url, {
+        //     waitUntil: ['load', 'networkidle0', 'domcontentloaded']
+        // });
+        // await page.waitFor(1000)
+        // const base64img = await page.screenshot({ encoding: "base64" });
+        // await browser.close();
 
         // get stock amount
         const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
@@ -94,7 +94,7 @@ async function find(url) {
             shipping,
             totalPrice,
             key,
-            base64img
+            base64img: "null"
         }
     } catch (error) {
         console.log(`scrape.js: ${error}`);
