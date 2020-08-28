@@ -46,9 +46,11 @@ async function find(url) {
 
         // take screenshot
         const browser = await puppeteer.launch({
-            'args': [
+            args: [
                 '--no-sandbox',
-                '--disable-setuid-sandbox'
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--single-process'
             ]
         }, { defaultViewport: null });
         const page = await browser.newPage();
