@@ -76,8 +76,7 @@ async function find(url) {
             });
 
             //getting shipping costs
-            // const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
-            const shippingHtmlTags = [];
+            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
             shippingHtmlTags.forEach(tag => {
                 tag !== null || tag !== "" ? shipping = getNumber(tag.innerText) : shipping = 0;
             });
