@@ -1,8 +1,6 @@
 const puppeteer = require('puppeteer');
-const got = require("got");
 const { JSDOM } = require("jsdom")
 const axios = require("axios");
-let request = require('request');
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
@@ -47,10 +45,11 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
-        })
-        await page.waitFor(1000);
+        // await page.goto(url, {
+        //     waitUntil: ['load', 'networkidle0', 'domcontentloaded']
+        // })
+        await page.goto(url);
+        await page.waitFor(4000);
         const base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
