@@ -1,7 +1,14 @@
 const puppeteer = require('puppeteer');
+const got = require("got");
+const jsdom = require("jsdom");
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
+
+// extracts number from text/string
+function getNumber(string) {
+    return string.match(/\d+(?:\.\d+)?/g).join("");
+}
 
 // generate random key
 function randomKey(length) {
@@ -38,72 +45,56 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['networkidle2']
-        })
         await page.goto(url);
-        await page.waitFor(5000);
-
-        // start scrapin here
-
-        // wait for element to load.. else code breaks
-        await page.waitForSelector("#ppd");
-
-        // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
+        await browser.close();
 
-        const scrapeData = await page.evaluate(() => {
-            // extracts number from text/string
-            function getNumber(string) {
-                return string.match(/\d+(?:\.\d+)?/g).join("");
-            }
-
-            // get title
-            title = document.querySelector("#productTitle.a-size-large.product-title-word-break").innerText;
+        await got(url).then(res => {
+            const DOM = new jsdom.JSDOM(res.body).window.document;
+            title = DOM.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
 
             // get stock amount
-            // const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
-            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success")];
+            const stockHtmlTags = [DOM.querySelector(".a-size-medium.a-color-success"), DOM.querySelector(".a-size-medium.a-color-state")];
             stockHtmlTags.forEach(tag => {
-                tag !== null || tag !== "" ? stockNb = tag.innerText : null;
+                if (tag !== null) {
+                    stockNb = tag.textContent;
+                }
             });
 
             // finding correct price
-            // const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
-            const priceHtmlTags = [document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            const priceHtmlTags = [DOM.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), DOM.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
             priceHtmlTags.forEach(tag => {
-                tag !== null || tag !== "" ? price = getNumber(tag.innerText) : null;
+                if (tag !== null) {
+                    price = getNumber(tag.textContent);
+                }
             });
 
-            //getting shipping costs
-            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            // getting shipping costs
+            const shippingHtmlTags = [DOM.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
             shippingHtmlTags.forEach(tag => {
-                tag !== null || tag !== "" ? shipping = getNumber(tag.innerText) : shipping = 0;
+                if (tag !== null) {
+                    shipping = getNumber(tag.textContent);
+                } else {
+                    shipping = 0;
+                }
             });
 
             // total price of item 
-            const totalPrice = parseFloat(price) + parseFloat(shipping);
+            totalPrice = parseFloat(price) + parseFloat(shipping);
 
-            return {
-                title,
-                stockNb,
-                price,
-                shipping,
-                totalPrice
-            }
+            // if (DOM.querySelector(".a-size-medium.a-color-success") !== null) {
+            //     stockNb = DOM.querySelector(".a-size-medium.a-color-success").textContent;
+            // } else {
+            //     stockNb = DOM.querySelector(".a-size-medium.a-color-state");
+            // }
         });
 
-        console.log(scrapeData);
-
-        // end
-        await browser.close();
-
         return {
-            stockNb: scrapeData.stockNb,
-            price: scrapeData.price,
-            title: scrapeData.title,
-            shipping: scrapeData.shipping,
-            totalPrice: scrapeData.totalPrice,
+            stockNb,
+            price,
+            title,
+            shipping,
+            totalPrice,
             key,
             base64img
         }
