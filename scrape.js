@@ -41,13 +41,15 @@ async function find(url) {
         await page.goto(url, {
             waitUntil: ['load', 'networkidle2', 'domcontentloaded']
         })
-        await page.goto(url);
+        // await page.goto(url);
         await page.waitFor(8000);
 
         // start scrapin here
 
         // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
+
+        await page.waitForSelector("#productTitle.a-size-large.product-title-word-break");
 
         const scrapeData = await page.evaluate(() => {
             // extracts number from text/string
