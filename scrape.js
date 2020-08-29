@@ -39,7 +39,7 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
-            waitUntil: ['load', 'networkidle2', 'domcontentloaded']
+            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
         })
         // await page.goto(url);
         await page.waitFor(3000);
@@ -50,7 +50,7 @@ async function find(url) {
         const base64img = await page.screenshot({ encoding: "base64" });
 
         // wait for element to load.. else code breaks
-        await page.waitForSelector("#productTitle.a-size-large.product-title-word-break");
+        // await page.waitForSelector("#productTitle.a-size-large.product-title-word-break");
 
         const scrapeData = await page.evaluate(() => {
             // extracts number from text/string
