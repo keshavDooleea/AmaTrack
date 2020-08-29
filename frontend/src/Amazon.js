@@ -6,6 +6,7 @@ import './Amazon.css';
 // default request configs
 // axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.baseURL = 'https://amatrack.herokuapp.com/';
+
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
