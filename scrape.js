@@ -38,10 +38,10 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle0', 'domcontentloaded']
-        })
-        // await page.goto(url);
+        // await page.goto(url, {
+        //     waitUntil: ['load', 'networkidle0', 'domcontentloaded']
+        // })
+        await page.goto(url);
         await page.waitFor(1000);
 
         // start scrapin here
