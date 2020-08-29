@@ -47,7 +47,7 @@ async function find(url) {
         // start scrapin here
 
         // wait for element to load.. else code breaks
-        await page.waitForSelector("#dp-container");
+        await page.waitForSelector("#ppd");
 
         // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
