@@ -50,7 +50,7 @@ async function find(url) {
         const base64img = await page.screenshot({ encoding: "base64" });
 
         // wait for element to load.. else code breaks
-        // await page.waitForSelector("#productTitle.a-size-large.product-title-word-break");
+        await page.waitForSelector("body");
 
         const scrapeData = await page.evaluate(() => {
             // extracts number from text/string
