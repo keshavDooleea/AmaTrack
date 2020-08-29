@@ -42,13 +42,14 @@ async function find(url) {
             waitUntil: ['load', 'networkidle2', 'domcontentloaded']
         })
         // await page.goto(url);
-        await page.waitFor(8000);
+        // await page.waitFor(8000);
 
         // start scrapin here
 
         // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
 
+        // wait for element to load.. else code breaks
         await page.waitForSelector("#productTitle.a-size-large.product-title-word-break");
 
         const scrapeData = await page.evaluate(() => {
