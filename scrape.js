@@ -54,8 +54,10 @@ async function find(url) {
         await got(url).then(res => {
             console.log("in got")
             const DOM = new jsdom.JSDOM(res.body).window.document;
+            console.log("first")
             title = DOM.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
 
+            console.log("sec")
             // get stock amount
             const stockHtmlTags = [DOM.querySelector(".a-size-medium.a-color-success"), DOM.querySelector(".a-size-medium.a-color-state")];
             stockHtmlTags.forEach(tag => {
@@ -64,6 +66,7 @@ async function find(url) {
                 }
             });
 
+            console.log("third")
             // finding correct price
             const priceHtmlTags = [DOM.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), DOM.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
             priceHtmlTags.forEach(tag => {
@@ -72,6 +75,7 @@ async function find(url) {
                 }
             });
 
+            console.log("forth")
             // getting shipping costs
             const shippingHtmlTags = [DOM.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
             shippingHtmlTags.forEach(tag => {
@@ -82,6 +86,7 @@ async function find(url) {
                 }
             });
 
+            console.log("fifht")
             // total price of item 
             totalPrice = parseFloat(price) + parseFloat(shipping);
 
