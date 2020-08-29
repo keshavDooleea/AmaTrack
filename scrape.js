@@ -46,11 +46,11 @@ async function find(url) {
 
         // start scrapin here
 
+        // wait for element to load.. else code breaks
+        await page.waitForSelector("#dp-container.a-container");
+
         // screenshot
         const base64img = await page.screenshot({ encoding: "base64" });
-
-        // wait for element to load.. else code breaks
-        await page.waitForSelector("#dp-container");
 
         const scrapeData = await page.evaluate(() => {
             // extracts number from text/string
