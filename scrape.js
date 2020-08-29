@@ -50,6 +50,7 @@ async function find(url) {
         })
         // await page.goto(url);
         await page.waitFor(8000);
+        await page.waitForSelector("#ppd");
         const base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
