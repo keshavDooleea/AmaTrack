@@ -49,7 +49,10 @@ async function find(url) {
         const base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
+        console.log("before got")
+
         await got(url).then(res => {
+            console.log("in got")
             const DOM = new jsdom.JSDOM(res.body).window.document;
             title = DOM.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
 
@@ -87,7 +90,10 @@ async function find(url) {
             // } else {
             //     stockNb = DOM.querySelector(".a-size-medium.a-color-state");
             // }
+            console.log("end got")
         });
+
+        console.log("out got")
 
         return {
             stockNb,
