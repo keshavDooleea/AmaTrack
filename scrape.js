@@ -59,8 +59,8 @@ async function find(url) {
             }
 
             // get title
-            if (document.querySelector("#productTitle.a-size-large.product-title-word-break").innerText !== null) {
-                title = document.querySelector("#productTitle.a-size-large.product-title-word-break").innerText;
+            if (document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent !== null) {
+                title = document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
             } else {
                 title = "AASA";
             }
@@ -73,11 +73,6 @@ async function find(url) {
             }
 
             // finding correct price
-            // const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
-            const priceHtmlTags = [document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
-            priceHtmlTags.forEach(tag => {
-                tag !== null || tag !== "" ? price = getNumber(tag.innerText) : null;
-            });
             if (document.querySelector("#price_inside_buybox.a-size-medium.a-color-price") !== null) {
                 price = getNumber(document.querySelector("#price_inside_buybox.a-size-medium.a-color-price").textContent);
             } else {
