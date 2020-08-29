@@ -42,7 +42,7 @@ async function find(url) {
             waitUntil: ['load', 'networkidle2', 'domcontentloaded']
         })
         // await page.goto(url);
-        await page.waitFor(2000);
+        await page.waitFor(3000);
 
         // start scrapin here
 
