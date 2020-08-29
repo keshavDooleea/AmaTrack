@@ -94,6 +94,8 @@ async function find(url) {
             }
         });
 
+        console.log(scrapeData);
+
         // end
         await browser.close();
 
