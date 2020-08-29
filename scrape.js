@@ -42,7 +42,7 @@ async function find(url) {
             waitUntil: ['load', 'networkidle0', 'domcontentloaded']
         })
         // await page.goto(url);
-        // await page.waitFor(3000);
+        await page.waitFor(1000);
 
         // start scrapin here
 
@@ -80,7 +80,6 @@ async function find(url) {
             shippingHtmlTags.forEach(tag => {
                 tag !== null || tag !== "" ? shipping = getNumber(tag.innerText) : shipping = 0;
             });
-            shipping = 0;
 
             // total price of item 
             const totalPrice = parseFloat(price) + parseFloat(shipping);
