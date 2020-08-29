@@ -1,7 +1,14 @@
 const puppeteer = require('puppeteer');
+const got = require("got");
+const jsdom = require("jsdom");
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
+
+// extracts number from text/string
+function getNumber(string) {
+    return string.match(/\d+(?:\.\d+)?/g).join("");
+}
 
 // generate random key
 function randomKey(length) {
@@ -38,78 +45,67 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle2', 'domcontentloaded']
-        })
-        // await page.goto(url);
-        await page.waitFor(3000);
-
-        // start scrapin here
-
-        // screenshot
+        await page.goto(url);
         const base64img = await page.screenshot({ encoding: "base64" });
-
-        // wait for element to load.. else code breaks
-        await page.waitForSelector("#ppd");
-
-        const scrapeData = await page.evaluate(() => {
-            // extracts number from text/string
-            function getNumber(string) {
-                return string.match(/\d+(?:\.\d+)?/g).join("");
-            }
-
-            // get title
-            if (document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent !== null) {
-                title = document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
-            } else {
-                title = "AASA";
-            }
-
-            // get stock amount
-            if (document.querySelector(".a-size-medium.a-color-success") !== null) {
-                stockNb = document.querySelector(".a-size-medium.a-color-success").textContent;
-            } else {
-                stockNb = document.querySelector(".a-size-medium.a-color-state").textContent;
-            }
-
-            // finding correct price
-            if (document.querySelector("#price_inside_buybox.a-size-medium.a-color-price") !== null) {
-                price = getNumber(document.querySelector("#price_inside_buybox.a-size-medium.a-color-price").textContent);
-            } else {
-                price = getNumber(document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price").textContent);
-            }
-
-            //getting shipping costs
-            // const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
-            // const shippingHtmlTags = [];
-            // shippingHtmlTags.forEach(tag => {
-            //     tag !== null || tag !== "" ? shipping = getNumber(tag.innerText) : shipping = 0;
-            // });
-            shipping = 0;
-
-            // total price of item 
-            const totalPrice = parseFloat(price) + parseFloat(shipping);
-
-            return {
-                title,
-                stockNb,
-                price,
-                shipping,
-                totalPrice
-            }
-        });
-
-        console.log(scrapeData);
-
-        // end
         await browser.close();
 
+        console.log("before got")
+
+        await got(url).then(res => {
+            console.log("in got")
+            const DOM = new jsdom.JSDOM(res.body).window.document;
+            console.log("first")
+            title = DOM.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
+
+            console.log("sec")
+            // get stock amount
+            const stockHtmlTags = [DOM.querySelector(".a-size-medium.a-color-success"), DOM.querySelector(".a-size-medium.a-color-state")];
+            stockHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    stockNb = tag.textContent;
+                }
+            });
+
+            console.log("third")
+            // finding correct price
+            const priceHtmlTags = [DOM.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), DOM.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            priceHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    price = getNumber(tag.textContent);
+                }
+            });
+
+            console.log("forth")
+            // getting shipping costs
+            const shippingHtmlTags = [DOM.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            shippingHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    shipping = getNumber(tag.textContent);
+                } else {
+                    shipping = 0;
+                }
+            });
+
+            console.log("fifht")
+            // total price of item 
+            totalPrice = parseFloat(price) + parseFloat(shipping);
+
+            // if (DOM.querySelector(".a-size-medium.a-color-success") !== null) {
+            //     stockNb = DOM.querySelector(".a-size-medium.a-color-success").textContent;
+            // } else {
+            //     stockNb = DOM.querySelector(".a-size-medium.a-color-state");
+            // }
+            console.log("end got")
+        });
+
+        console.log("out got")
+
         return {
-            stockNb: scrapeData.stockNb,
-            price: scrapeData.price,
-            title: scrapeData.title,
-            shipping: scrapeData.shipping,
-            totalPrice: scrapeData.totalPrice,
+            stockNb,
+            price,
+            title,
+            shipping,
+            totalPrice,
             key,
             base64img
         }
