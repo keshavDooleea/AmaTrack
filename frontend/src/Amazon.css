@@ -871,4 +871,68 @@
     opacity: 1;
   }
 }
+
+@media all and (max-width: 920px) {
+  .first-layer form {
+    width: 50% !important;
+  }
+  .welcome-div {
+    width: 30% !important;
+    height: 16vh !important;
+  }
+}
+
+@media all and (max-width: 775px) {
+  .first-layer form {
+    width: 30% !important;
+  }
+  .first-layer form .url-input {
+    width: 85% !important;
+  }
+  .first-layer form .url-btn {
+    width: 15% !important;
+  }
+}
+
+@media all and (max-width: 565px) {
+  .amazon h1 {
+    font-size: 20px !important;
+  }
+  .welcome-div {
+    width: 50% !important;
+    height: 20vh !important;
+  }
+}
+
+@media all and (max-width: 455px) {
+  p {
+    font-size: 13px !important;
+  }
+  .amazon h1 {
+    font-size: 16px !important;
+  }
+  .amazon h1 span:nth-child(4) {
+    font-size: 0.7em !important;
+  }
+  .first-layer {
+    padding: 0 10px !important;
+  }
+  .preloader {
+    width: 60px !important;
+  }
+  .sec-layer small {
+    font-size: 10px !important;
+  }
+  .first-layer form {
+    width: 50% !important;
+    height: 50% !important;
+    margin-left: 20px;
+  }
+  .first-layer form .url-input {
+    width: 75% !important;
+  }
+  .first-layer form .url-btn {
+    width: 25% !important;
+  }
+}
 /*# sourceMappingURL=Amazon.css.map */
