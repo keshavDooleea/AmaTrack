@@ -607,6 +607,10 @@
 }
 
 @media all and (max-width: 775px) {
+    .body {
+        height: 150vh !important;
+    }
+
     .first-layer form {
         width: 30% !important;
 
@@ -618,9 +622,48 @@
             width: 15% !important;
         }
     }
+
+    .third-layer {
+        height: 134vh;
+        flex-direction: column !important;
+        justify-content: initial !important;
+
+        p {
+            font-size: 14px !important;
+        }
+
+        .img-container {
+            width: 90% !important;
+            height: 80vh !important;
+            overflow: visible !important;
+            margin-top: 10px;
+
+            img {
+                height: 80vh !important;
+            }
+        }
+
+        .info-container {
+            height: 40vh !important;
+            flex-direction: row !important;
+            width: 90% !important;
+            height: 100%;
+            margin-top: 30px !important;
+
+            .actual-info,
+            .desired-info {
+                width: 47% !important;
+                height: 100% !important;
+            }
+        }
+    }
 }
 
 @media all and (max-width: 565px) {
+    .body {
+        height: 145vh !important;
+    }
+
     .amazon h1 {
         font-size: 20px !important;
     }
@@ -628,6 +671,55 @@
     .welcome-div {
         width: 50% !important;
         height: 20vh !important;
+    }
+
+    .third-layer {
+        height: 129vh;
+        flex-direction: column !important;
+        justify-content: initial !important;
+
+        p {
+            font-size: 14px !important;
+        }
+
+        .img-container {
+            width: 90% !important;
+            height: initial !important;
+            overflow: visible !important;
+            margin-top: 10px;
+
+            img {
+                height: initial !important;
+            }
+        }
+
+        .info-container {
+            height: 80vh !important;
+            flex-direction: column !important;
+            width: 90% !important;
+            height: 100%;
+            margin-top: 30px !important;
+
+            .actual-info,
+            .desired-info {
+                width: 100% !important;
+                height: 47% !important;
+            }
+        }
+
+        .sucess-response-result {
+            .actual-info,
+            .desired-info {
+                transform: translateY(-150vh) !important;
+            }
+        }
+        
+        .error-response-result {
+            .actual-info,
+            .desired-info {
+                transform: translateY(-150vh) !important;
+            }
+        }
     }
 }
 

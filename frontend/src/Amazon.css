@@ -883,6 +883,9 @@
 }
 
 @media all and (max-width: 775px) {
+  .body {
+    height: 150vh !important;
+  }
   .first-layer form {
     width: 30% !important;
   }
@@ -892,15 +895,102 @@
   .first-layer form .url-btn {
     width: 15% !important;
   }
+  .third-layer {
+    height: 134vh;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    -webkit-box-pack: initial !important;
+        -ms-flex-pack: initial !important;
+            justify-content: initial !important;
+  }
+  .third-layer p {
+    font-size: 14px !important;
+  }
+  .third-layer .img-container {
+    width: 90% !important;
+    height: 80vh !important;
+    overflow: visible !important;
+    margin-top: 10px;
+  }
+  .third-layer .img-container img {
+    height: 80vh !important;
+  }
+  .third-layer .info-container {
+    height: 40vh !important;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    width: 90% !important;
+    height: 100%;
+    margin-top: 30px !important;
+  }
+  .third-layer .info-container .actual-info,
+  .third-layer .info-container .desired-info {
+    width: 47% !important;
+    height: 100% !important;
+  }
 }
 
 @media all and (max-width: 565px) {
+  .body {
+    height: 145vh !important;
+  }
   .amazon h1 {
     font-size: 20px !important;
   }
   .welcome-div {
     width: 50% !important;
     height: 20vh !important;
+  }
+  .third-layer {
+    height: 129vh;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    -webkit-box-pack: initial !important;
+        -ms-flex-pack: initial !important;
+            justify-content: initial !important;
+  }
+  .third-layer p {
+    font-size: 14px !important;
+  }
+  .third-layer .img-container {
+    width: 90% !important;
+    height: initial !important;
+    overflow: visible !important;
+    margin-top: 10px;
+  }
+  .third-layer .img-container img {
+    height: initial !important;
+  }
+  .third-layer .info-container {
+    height: 80vh !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    width: 90% !important;
+    height: 100%;
+    margin-top: 30px !important;
+  }
+  .third-layer .info-container .actual-info,
+  .third-layer .info-container .desired-info {
+    width: 100% !important;
+    height: 47% !important;
+  }
+  .third-layer .sucess-response-result .actual-info,
+  .third-layer .sucess-response-result .desired-info {
+    -webkit-transform: translateY(-150vh) !important;
+            transform: translateY(-150vh) !important;
+  }
+  .third-layer .error-response-result .actual-info,
+  .third-layer .error-response-result .desired-info {
+    -webkit-transform: translateY(-150vh) !important;
+            transform: translateY(-150vh) !important;
   }
 }
 
