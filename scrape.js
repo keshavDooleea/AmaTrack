@@ -37,7 +37,6 @@ async function find(url) {
         key = await checkKey();
 
         // take screenshot
-        // console.log("start")
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] }, { defaultViewport: null });
         const page = await browser.newPage();
         await page.setViewport({
@@ -46,15 +45,13 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
-            waitUntil: 'domcontentloaded'
+            waitUntil: 'load',
+            timeout: 0
         })
-        // await page.goto(url);
-        await page.waitForNavigation({
-            waitUntil: 'networkidle2',
-        });
         base64img = await page.screenshot({ encoding: "base64" });
-        await browser.close();
+        // await browser.close();
 
+        // start scrapin data here
         const { data } = await axios.get(url);
         const dom = new JSDOM(data, {});
         const { document } = dom.window;
