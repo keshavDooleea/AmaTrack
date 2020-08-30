@@ -21,8 +21,10 @@
     "jsdom": "^16.4.0",
     "mailer": "^0.6.7",
     "mongoose": "^5.10.0",
+    "node-fetch": "^2.6.0",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
-    "puppeteer": "^5.2.1"
+    "puppeteer": "^5.2.1",
+    "request": "^2.88.2"
   }
 }

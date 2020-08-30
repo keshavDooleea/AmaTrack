@@ -22,8 +22,8 @@ router.get("/", (req, res) => {
 router.get("/scrapeInfo", async (req, res) => {
     const url = req.query.url;
     console.log("/scrapInfo");
-    const item = await scrapeProduct(url);
-    res.json(item);
+    const item = await scrapeProduct(url, res);
+    // res.json(item);
 });
 
 router.post("/insertDB", async (req, res) => {

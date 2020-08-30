@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 const { JSDOM } = require("jsdom")
 const axios = require("axios");
+const fetch = require('node-fetch');
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
@@ -28,7 +29,7 @@ async function checkKey() {
 }
 
 // get page source contents
-async function find(url) {
+async function find(url, res) {
     try {
         let stockNb, price, title, shipping, key, totalPrice;
 
@@ -60,55 +61,61 @@ async function find(url) {
         delete process.env['HTTPS_PROXY'];
 
         console.log("after proxies")
-        console.log(await axios.get(url));
-        const { data } = await axios.get(url);
-        console.log("after axios")
-        const dom = new JSDOM(data, {});
-        const { document } = dom.window;
-
-        // title
-        title = document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
-
-        // get stock amount
-        const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
-        stockHtmlTags.forEach(tag => {
-            if (tag !== null) {
-                stockNb = tag.textContent;
+        // const { data } = await axios.get(url);
+        const request = require('request');
+        request(url, function (error, response, body) {
+            if (error) {
+                console.log(`scrape.js: request!: ${error}`);
             }
+
+            // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+            const dom = new JSDOM(body, {});
+            const { document } = dom.window;
+
+            // title
+            title = document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
+
+            // get stock amount
+            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
+            stockHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    stockNb = tag.textContent;
+                }
+            });
+
+            // finding correct price
+            const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
+            priceHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    price = getNumber(tag.textContent);
+                }
+            });
+
+            // getting shipping costs
+            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
+            shippingHtmlTags.forEach(tag => {
+                if (tag !== null) {
+                    shipping = getNumber(tag.textContent);
+                } else {
+                    shipping = 0;
+                }
+            });
+
+            // total price of item 
+            totalPrice = parseFloat(price) + parseFloat(shipping);
+
+            console.log("done scrapin");
+
+            res.json({
+                stockNb,
+                price,
+                title,
+                shipping,
+                totalPrice,
+                key,
+                base64img
+            })
         });
-
-        // finding correct price
-        const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
-        priceHtmlTags.forEach(tag => {
-            if (tag !== null) {
-                price = getNumber(tag.textContent);
-            }
-        });
-
-        // getting shipping costs
-        const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
-        shippingHtmlTags.forEach(tag => {
-            if (tag !== null) {
-                shipping = getNumber(tag.textContent);
-            } else {
-                shipping = 0;
-            }
-        });
-
-        // total price of item 
-        totalPrice = parseFloat(price) + parseFloat(shipping);
-
-        console.log("done scrapin");
-
-        return {
-            stockNb,
-            price,
-            title,
-            shipping,
-            totalPrice,
-            key,
-            base64img
-        }
     } catch (error) {
         console.log(`scrape.js: ${error}`);
     }
