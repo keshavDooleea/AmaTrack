@@ -50,7 +50,7 @@ async function find(url) {
         })
         // await page.goto(url);
         await page.waitFor(4000);
-        await page.waitForSelector("#landingImage").then(() => {
+        await page.waitForSelector("#landingImage").then(async () => {
             console.log("inside");
             base64img = await page.screenshot({ encoding: "base64" });
             console.log("finish");
