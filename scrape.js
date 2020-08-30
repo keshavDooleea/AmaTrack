@@ -31,7 +31,7 @@ async function checkKey() {
 // get page source contents
 async function find(url) {
     try {
-        let stockNb, price, title, shipping, key, totalPrice, base64img;
+        let stockNb, price, title, shipping, key, totalPrice;
 
         // key
         key = await checkKey();
@@ -45,13 +45,11 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
-            waitUntil: ['load', 'networkidle2', 'domcontentloaded'],
+            waitUntil: ['load', 'networkidle0', 'domcontentloaded'],
             timeout: 0
         })
-        await page.setDefaultNavigationTimeout(0);
-        await page.waitFor(4000);
-        await page.waitForSelector("#ppd", { visible: true });
-        base64img = await page.screenshot({ encoding: "base64" });
+        await page.waitFor(10000);
+        const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
 
         // start scrapin data here
