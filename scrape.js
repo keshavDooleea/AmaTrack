@@ -49,6 +49,7 @@ async function find(url) {
             timeout: 0
         })
         await page.waitFor(4000);
+        await page.waitForSelector("#ppd", { visible: true });
         base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
 
