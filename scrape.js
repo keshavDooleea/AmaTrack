@@ -31,7 +31,7 @@ async function checkKey() {
 // get page source contents
 async function find(url) {
     try {
-        let stockNb, price, title, shipping, key, totalPrice;
+        let stockNb, price, title, shipping, key, totalPrice, base64img;
 
         // key
         key = await checkKey();
@@ -50,8 +50,12 @@ async function find(url) {
         })
         // await page.goto(url);
         await page.waitFor(4000);
-        await page.waitForSelector("#landingImage");
-        const base64img = await page.screenshot({ encoding: "base64" });
+        await page.waitForSelector("#landingImage").then(() => {
+            console.log("inside");
+            base64img = await page.screenshot({ encoding: "base64" });
+            console.log("finish");
+
+        });
         await browser.close();
 
         const { data } = await axios.get(url);
