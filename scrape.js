@@ -58,6 +58,9 @@ async function find(url) {
         delete process.env['HTTP_PROXY'];
         delete process.env['https_proxy'];
         delete process.env['HTTPS_PROXY'];
+
+        console.log("after proxies")
+        console.log(await axios.get(url));
         const { data } = await axios.get(url);
         console.log("after axios")
         const dom = new JSDOM(data, {});
