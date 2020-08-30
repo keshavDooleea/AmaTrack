@@ -46,11 +46,12 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
-            waitUntil: 'networkidle2'
+            waitUntil: 'domcontentloaded'
         })
         // await page.goto(url);
-        await page.waitFor(4000);
-        await page.waitForSelector("#ppd", { visible: true });
+        await page.waitForNavigation({
+            waitUntil: 'networkidle2',
+        });
         base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
