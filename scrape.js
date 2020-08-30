@@ -2,6 +2,8 @@ const puppeteer = require('puppeteer');
 const { JSDOM } = require("jsdom")
 const axios = require("axios");
 const fetch = require('node-fetch');
+const request = require('request');
+
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
@@ -48,6 +50,7 @@ async function find(url, res) {
         await page.goto(url, {
             timeout: 0
         });
+        await page.waitFor(2000);
         await page.evaluate(() => window.stop());
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
@@ -61,8 +64,6 @@ async function find(url, res) {
         delete process.env['HTTPS_PROXY'];
 
         console.log("after proxies")
-        // const { data } = await axios.get(url);
-        const request = require('request');
         request(url, function (error, response, body) {
             if (error) {
                 console.log(`scrape.js: request!: ${error}`);
