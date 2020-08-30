@@ -48,6 +48,7 @@ async function find(url) {
             waitUntil: ['load', 'networkidle2', 'domcontentloaded'],
             timeout: 0
         })
+        await page.setDefaultNavigationTimeout(0);
         await page.waitFor(4000);
         await page.waitForSelector("#ppd", { visible: true });
         base64img = await page.screenshot({ encoding: "base64" });
