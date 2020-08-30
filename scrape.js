@@ -1,9 +1,6 @@
 const puppeteer = require('puppeteer');
 const { JSDOM } = require("jsdom")
-const axios = require("axios");
-const fetch = require('node-fetch');
 const request = require('request');
-
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
@@ -48,9 +45,9 @@ async function find(url, res) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
+            waitUntil: "networkidle2",
             timeout: 0
         });
-        await page.waitFor(2000);
         await page.evaluate(() => window.stop());
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
