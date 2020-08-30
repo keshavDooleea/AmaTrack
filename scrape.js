@@ -46,16 +46,12 @@ async function find(url) {
             deviceScaleFactor: 1,
         });
         await page.goto(url, {
-            waitUntil: ['load', 'networkidle2', 'domcontentloaded']
+            waitUntil: 'networkidle2'
         })
         // await page.goto(url);
         await page.waitFor(4000);
-        await page.waitForSelector("#landingImage").then(async () => {
-            console.log("inside");
-            base64img = await page.screenshot({ encoding: "base64" });
-            console.log("finish");
-
-        });
+        await page.waitForSelector("#ppd", { visible: true });
+        base64img = await page.screenshot({ encoding: "base64" });
         await browser.close();
 
         const { data } = await axios.get(url);
