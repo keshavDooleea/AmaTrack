@@ -44,11 +44,8 @@ async function find(url) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: ['load', 'networkidle0', 'domcontentloaded'],
-            timeout: 0
-        })
-        await page.waitFor(4000);
+        await page.goto(url);
+        await page.evaluate(() => window.stop());
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
 
