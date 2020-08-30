@@ -35,6 +35,7 @@ async function find(url) {
         // key
         key = await checkKey();
 
+        console.log("before ss")
         // take screenshot
         const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox',] }, { defaultViewport: null });
         const page = await browser.newPage();
@@ -48,8 +49,10 @@ async function find(url) {
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
 
+        console.log("after ss and before axios");
         // start scrapin data here
         const { data } = await axios.get(url);
+        console.log("after axios")
         const dom = new JSDOM(data, {});
         const { document } = dom.window;
 
