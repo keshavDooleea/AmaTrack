@@ -24,7 +24,6 @@ async function checkKey() {
         myKey = randomKey(8);
         product = await Product.findOne({ key: myKey });
     }
-
     return myKey;
 }
 
