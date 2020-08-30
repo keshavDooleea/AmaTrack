@@ -37,14 +37,16 @@ async function find(url) {
 
         console.log("before ss")
         // take screenshot
-        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox',] }, { defaultViewport: null });
+        const browser = await puppeteer.launch({ args: ['--no-sandbox'] }, { defaultViewport: null });
         const page = await browser.newPage();
         await page.setViewport({
             width: 980,
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url);
+        await page.goto(url, {
+            timeout: 0
+        });
         await page.evaluate(() => window.stop());
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
