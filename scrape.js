@@ -50,7 +50,12 @@ async function find(url) {
         // await browser.close();
 
         console.log("after ss and before axios");
+
         // start scrapin data here
+        delete process.env['http_proxy'];
+        delete process.env['HTTP_PROXY'];
+        delete process.env['https_proxy'];
+        delete process.env['HTTPS_PROXY'];
         const { data } = await axios.get(url);
         console.log("after axios")
         const dom = new JSDOM(data, {});
