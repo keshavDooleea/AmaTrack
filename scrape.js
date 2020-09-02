@@ -1,6 +1,7 @@
+const cheerio = require("cheerio");
 const puppeteer = require('puppeteer');
-const { JSDOM } = require("jsdom")
-const request = require('request');
+const fetch = require("node-fetch");
+
 
 // mongo schemas
 const Product = require("./modals/productSchema").Product;
@@ -24,18 +25,14 @@ async function checkKey() {
         myKey = randomKey(8);
         product = await Product.findOne({ key: myKey });
     }
+
     return myKey;
 }
 
 // get page source contents
 async function find(url, res) {
+    // make http request to get source content
     try {
-        let stockNb, price, title, shipping, key, totalPrice;
-
-        // key
-        key = await checkKey();
-
-        console.log("before ss")
         // take screenshot
         const browser = await puppeteer.launch({ args: ['--no-sandbox'] }, { defaultViewport: null });
         const page = await browser.newPage();
@@ -44,76 +41,57 @@ async function find(url, res) {
             height: 830,
             deviceScaleFactor: 1,
         });
-        await page.goto(url, {
-            waitUntil: "networkidle2",
-            timeout: 0
-        });
-        await page.evaluate(() => window.stop());
+        await page.goto(url);
         const base64img = await page.screenshot({ encoding: "base64" });
         // await browser.close();
 
-        console.log("after ss and before axios");
-
-        // start scrapin data here
-        delete process.env['http_proxy'];
-        delete process.env['HTTP_PROXY'];
-        delete process.env['https_proxy'];
-        delete process.env['HTTPS_PROXY'];
-
-        console.log("after proxies")
-        request(url, function (error, response, body) {
-            if (error) {
-                console.log(`scrape.js: request!: ${error}`);
-            }
-
-            // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            const dom = new JSDOM(body, {});
-            const { document } = dom.window;
-
-            // title
-            title = document.querySelector("#productTitle.a-size-large.product-title-word-break").textContent;
-
-            // get stock amount
-            const stockHtmlTags = [document.querySelector(".a-size-medium.a-color-success"), document.querySelector(".a-size-medium.a-color-state")];
-            stockHtmlTags.forEach(tag => {
-                if (tag !== null) {
-                    stockNb = tag.textContent;
-                }
-            });
-
-            // finding correct price
-            const priceHtmlTags = [document.querySelector("#price_inside_buybox.a-size-medium.a-color-price"), document.querySelector("#priceblock_ourprice.a-size-medium.a-color-price")];
-            priceHtmlTags.forEach(tag => {
-                if (tag !== null) {
-                    price = getNumber(tag.textContent);
-                }
-            });
-
-            // getting shipping costs
-            const shippingHtmlTags = [document.querySelector("#ourprice_shippingmessage .a-color-secondary.a-size-base")];
-            shippingHtmlTags.forEach(tag => {
-                if (tag !== null) {
-                    shipping = getNumber(tag.textContent);
-                } else {
-                    shipping = 0;
-                }
-            });
-
-            // total price of item 
-            totalPrice = parseFloat(price) + parseFloat(shipping);
-
-            console.log("done scrapin");
-
-            res.json({
-                stockNb,
-                price,
-                title,
-                shipping,
-                totalPrice,
-                key,
-                base64img
+        fetch(url)
+            .then(res => {
+                return res.text();
             })
-        });
+            .then(async data => {
+                let stockNb, price, title, shipping, key;
+                const $ = cheerio.load(data); // loads html
+
+                // key
+                key = await checkKey();
+
+                // get title
+                title = $("#productTitle.a-size-large.product-title-word-break").text();
+
+                // get stock amount
+                const stockHtmlTags = [$(".a-size-medium.a-color-success").text(), $(".a-size-medium.a-color-state").text()];
+                stockHtmlTags.forEach(tag => {
+                    tag !== "" ? stockNb = tag : null;
+                });
+
+                // finding correct price
+                const priceHtmlTags = [$("#price_inside_buybox.a-size-medium.a-color-price").text(), $("#priceblock_ourprice.a-size-medium.a-color-price").text()];
+                priceHtmlTags.forEach(tag => {
+                    tag !== "" ? price = getNumber(tag) : null;
+                });
+
+                // getting shipping costs
+                const shippingHtmlTags = [$("#ourprice_shippingmessage .a-color-secondary.a-size-base").text()];
+                shippingHtmlTags.forEach(tag => {
+                    tag !== "" ? shipping = getNumber(tag) : shipping = 0;
+                });
+
+                // total price of item 
+                const totalPrice = parseFloat(price) + parseFloat(shipping);
+
+                console.log("done")
+
+                res.json({
+                    stockNb,
+                    price,
+                    title,
+                    shipping,
+                    totalPrice,
+                    key,
+                    base64img
+                });
+            });
     } catch (error) {
         console.log(`scrape.js: ${error}`);
     }
